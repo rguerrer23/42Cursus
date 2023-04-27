@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 13:05:38 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/04/20 15:55:27 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/04/27 18:56:24 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,27 @@ char	*ft_itoa(int n)
 {
 	char	*ptr;
 	int		x;
-	int		j;
+	int		nb;
 
-	if (n == 0)
+	nb = n;
+	if (nb == 0)
 		return (ft_strdup("0"));
-	if (n == -2147483648)
+	if (nb == -2147483648)
 		return (ft_strdup("-2147483648"));
-	ptr = malloc(sizeof(char) * (ft_lenint(n) + 1));
+	ptr = malloc(sizeof(char) * (ft_lenint(nb) + 1));
 	if (!ptr)
 		return (NULL);
-	x = 0;
-	j = 1;
-	if (n < 0)
+	x = ft_lenint(nb);
+	ptr[x--] = '\0';
+	if (nb < 0)
 	{
-		n *= -1;
-		ptr[x] = '-';
-		x++;
-		j = 0;
+		nb *= -1;
+		ptr[0] = '-';
 	}
-	while (n > 0)
+	while (nb > 0)
 	{
-		ptr[ft_lenint(n) - j] = n % 10 + '0';
-		n /= 10;
-		x++;
+		ptr[x--] = nb % 10 + '0';
+		nb /= 10;
 	}
-	ptr[x] = '\0';
 	return (ptr);
 }
