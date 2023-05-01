@@ -57,6 +57,20 @@ char	*substrig(char const *s, char c)
 	return (str);
 }
 
+char	**limpiar(char **ptr)
+{
+	int	i;
+
+	i = 0;
+	while (ptr[i] != NULL)
+	{
+		free(ptr[i]);
+		i++;
+	}
+	free(ptr);
+	return (NULL);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**ptr;
@@ -75,7 +89,8 @@ char	**ft_split(char const *s, char c)
 		if (*s && *s != c)
 		{
 			ptr[x] = substrig(s, c);
-			x++;
+			if (!ptr[x++])
+				return (limpiar(ptr));
 			while (*s && *s != c)
 				s++;
 		}
