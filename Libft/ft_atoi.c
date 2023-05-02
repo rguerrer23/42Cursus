@@ -6,11 +6,11 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:55:39 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/04/19 16:51:16 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:05:52 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 int	ft_atoi(const char *str)
 {

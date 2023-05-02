@@ -6,11 +6,11 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 12:30:18 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/04/19 16:52:01 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/05/02 18:10:57 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

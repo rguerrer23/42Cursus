@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 int	lenp(char const *s, char c)
 {
@@ -95,6 +95,6 @@ char	**ft_split(char const *s, char c)
 				s++;
 		}
 	}
-	ptr[x] = '\0';
+	ptr[x] = NULL;
 	return (ptr);
 }

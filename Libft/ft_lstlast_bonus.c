@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 11:49:08 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/04/29 11:49:08 by rguerrer         ###   ########.fr       */
+/*   Created: 2023/04/28 18:12:32 by rguerrer          #+#    #+#             */
+/*   Updated: 2023/04/28 18:12:32 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+t_list	*ft_lstlast(t_list *lst)
 {
-	t_list	*x;
-	t_list	*next;
-
-	x = *lst;
-	*lst = NULL;
-	while (x != NULL)
-	{
-		next = x->next;
-		del(x->content);
-		free(x);
-		x = next;
-	}
+	while (lst != NULL && lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }

@@ -1,47 +1,38 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/04/18 16:32:21 by rguerrer          #+#    #+#              #
-#    Updated: 2023/04/29 12:10:27 by rguerrer         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = libft.a
 
-FILES = ft_atoi.c ft_calloc.c ft_isdigit.c ft_memcpy.c ft_strdup.c \
-		ft_strlen.c ft_substr.c ft_isalnum.c ft_isprint.c ft_memmove.c \
-		ft_strjoin.c ft_strncmp.c ft_tolower.c ft_isalpha.c ft_memchr.c \
-		ft_memset.c ft_strlcat.c ft_strnstr.c ft_toupper.c \
-		ft_bzero.c ft_isascii.c ft_memcmp.c ft_strchr.c ft_strlcpy.c ft_strrchr.c \
-		ft_strtrim.c ft_itoa.c ft_strmapi.c ft_putchar_fd.c ft_putstr_fd.c ft_striteri.c \
-		ft_putendl_fd.c ft_putnbr_fd.c ft_split.c \
-		
-OBJS		= $(FILES:.c=.o)
+CC = gcc
 
-BONUS_FILES = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c  ft_lstiter.c ft_lstmap.c \
+CFLAGS = -Wall -Werror -Wextra
 
-BONUS_OBJS = $(BONUS_FILES:.c=.o)
+LIB = ar rcs
 
-FLAGS		= -Wall -Werror -Wextra
+SOURCES = ft_isalpha.c ft_isalnum.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_tolower.c ft_toupper.c ft_strchr.c ft_strlen.c ft_strncmp.c ft_strrchr.c ft_strnstr.c ft_strlcpy.c ft_strlcat.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_bzero.c ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c 
 
-$(NAME):
-	gcc $(FLAGS) -c $(FILES) -I ./
-	ar rc $(NAME) $(OBJS)
+OBJ = $(SOURCES:.c=.o)
+
+BONUS = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
+
+BONUS_OBJS = $(BONUS:.c=.o)
+
+RM = rm -f
 
 all: $(NAME)
 
-bonus: $(NAME)
-	gcc $(FLAGS) -c $(BONUS_FILES) -I ./
-	ar rc $(NAME) $(BONUS_OBJS)
+$(NAME): $(OBJ)
+	$(LIB) $(NAME) $(OBJ)
+
+bonus: $(OBJS) $(BONUS_OBJS)
+	$(LIB) $(NAME) $(OBJS) $(BONUS_OBJS)
+
+%.o: %.c
+	$(CC) -c $(CFLAGS) $?
 
 clean:
-	rm -f $(OBJS) $(BONUS_OBJS)
+	$(RM) $(OBJ) $(BONUS_OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re bonus
