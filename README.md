@@ -1,2 +1,2 @@
-# Libft
-42 primer proyecto Libft
+# 42 Cursus
+Libft
