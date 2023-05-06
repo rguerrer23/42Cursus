@@ -3,6 +3,6 @@
 
 int main()
 {
-	printf("%p\n", "g");
-	ft_printf("%p", "g");
+	printf("%d\n", -421);
+	ft_printf("%d", -421);
 }

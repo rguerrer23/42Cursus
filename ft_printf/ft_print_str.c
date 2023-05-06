@@ -6,11 +6,11 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:56:20 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/05/05 15:03:36 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/05/06 20:25:29 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_strlen(char *s)
 {

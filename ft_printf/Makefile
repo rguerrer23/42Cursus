@@ -6,7 +6,7 @@ CFLAGS = -Wall -Werror -Wextra
 
 LIB = ar rcs
 
-SOURCES = ft_printf.c
+SOURCES = ft_printf.c ft_print_char.c ft_print_punt.c ft_print_str.c ft_print_int.c
 
 OBJ = $(SOURCES:.c=.o)
 

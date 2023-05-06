@@ -6,18 +6,18 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:23:12 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/05/05 16:41:01 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/05/06 20:25:02 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	ft_putchar(char c)
 {
 	write (1, &c, 1);
 }
 
-void	ft_choose(char elec, va_list *args)
+int	ft_choose(char elec, va_list *args)
 {
 	int	x;
 
@@ -33,6 +33,7 @@ void	ft_choose(char elec, va_list *args)
 	}
 	else if (elec == 'd' || elec == 'i')
 		x += ft_print_int(args);
+	return (x);
 }
 
 int	ft_printf(char const *str, ...)

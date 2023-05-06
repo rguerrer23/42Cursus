@@ -6,12 +6,11 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:35:23 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/05/05 16:35:13 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/05/06 20:25:56 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
-#include <stdio.h>
+#include "ft_printf.h"
 
 size_t	ft_counthex(unsigned long n)
 {
