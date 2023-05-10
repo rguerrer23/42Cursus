@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_lenint(int n)
+int	ft_lenint(long n)
 {
 	int	x;
 
@@ -92,19 +92,11 @@ int	ft_print_int(va_list *ap)
 	int		nb;
 	int		cuent;
 	char	*ptr;
-	int		x;
 
-	nb = va_arg(*ap, int);
+	nb = va_arg(*ap, long);
 	va_end(*ap);
 	ptr = ft_itoa(nb);
 	cuent = ft_lenint(nb);
-	if (nb < 0)
-		cuent += 1;
-	x = 0;
-	while (ptr[x] != '\0')
-	{
-		ft_putchar(ptr[x]);
-		x++;
-	}
+	ft_putstr(ptr);
 	return (cuent);
 }

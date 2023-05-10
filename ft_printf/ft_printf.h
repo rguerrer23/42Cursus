@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:08:56 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/05/06 20:24:37 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/05/09 18:21:02 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,10 @@ void	ft_putchar(char c);
 int		ft_print_str(va_list *ap);
 int		ft_print_punt(va_list *ap);
 int		ft_print_int(va_list *ap);
+int		ft_print_uint(va_list *ap);
+size_t	ft_counthex(unsigned long n);
+int		ft_print_hex(va_list *ap);
+int		ft_print_hexcap(va_list *ap);
+void	ft_putstr(char *s);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:23:12 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/05/06 20:25:02 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/05/10 20:36:33 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,22 @@ int	ft_choose(char elec, va_list *args)
 	else if (elec == 's')
 		x += ft_print_str(args);
 	else if (elec == 'p')
-	{
-		write (1, "0x", 2);
 		x += ft_print_punt(args);
-	}
 	else if (elec == 'd' || elec == 'i')
 		x += ft_print_int(args);
+	else if (elec == 'u')
+		x += ft_print_uint(args);
+	else if (elec == 'x')
+		x += ft_print_hex(args);
+	else if (elec == 'X')
+		x += ft_print_hexcap(args);
 	return (x);
+}
+
+void	ft_print_per(int *cuent)
+{
+	ft_putchar('%');
+	*cuent = *cuent + 1;
 }
 
 int	ft_printf(char const *str, ...)
@@ -45,19 +54,20 @@ int	ft_printf(char const *str, ...)
 	cuent = 0;
 	z = 0;
 	va_start(args, str);
-	if (str[0] == '\0')
-		return (0);
 	while (str[z])
 	{
-		if (str[z] == '%')
-		{
-			z++;
-			cuent += ft_choose(str[z], &args);
-		}
-		else
+		if (str[z] != '%')
 		{
 			ft_putchar(str[z]);
 			cuent++;
+		}
+		else
+		{
+			z++;
+			if (str[z] == '%')
+				ft_print_per(&cuent);
+			else
+				cuent += ft_choose(str[z], &args);
 		}
 		z++;
 	}

@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:56:20 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/05/06 20:25:29 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/05/09 19:51:50 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ int	ft_print_str(va_list *ap)
 	str = va_arg(*ap, char *);
 	va_end(*ap);
 	x = 0;
+	if (str == NULL)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	while (str[x] != '\0')
 	{
 		ft_putchar(str[x]);
