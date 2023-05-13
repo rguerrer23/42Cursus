@@ -6,7 +6,9 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:15:25 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/05/11 14:15:25 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/05/13 13:24:48 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "get_next_line.h"
 
