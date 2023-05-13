@@ -38,6 +38,7 @@ char	*ft_strdup(const char *s1)
 	int			z;
 
 	z = 0;
+	x = 0;
 	while (s1[z] != '\0')
 	{
 		x++;
@@ -98,5 +99,5 @@ int	ft_print_int(va_list *ap)
 	ptr = ft_itoa(nb);
 	cuent = ft_lenint(nb);
 	ft_putstr(ptr);
-	return (cuent);
+	return (free(ptr), cuent);
 }

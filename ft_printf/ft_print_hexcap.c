@@ -37,5 +37,5 @@ int	ft_print_hexcap(va_list *ap)
 		i--;
 	}
 	ft_putstr(ptr);
-	return (x);
+	return (free(ptr), x);
 }

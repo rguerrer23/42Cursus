@@ -50,5 +50,5 @@ int	ft_print_hex(va_list *ap)
 		i--;
 	}
 	ft_putstr(ptr);
-	return (x);
+	return (free(ptr), x);
 }

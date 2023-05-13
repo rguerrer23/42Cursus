@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:35:23 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/05/10 20:37:46 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/05/13 12:07:19 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ int	ft_print_punt(va_list *ap)
 	va_end(*ap);
 	i = ft_counthex(n);
 	x = i;
+	write (1, "0x", 2);
 	if (n == 0)
 	{
-		ft_putstr("(nil)");
-		return (5);
+		ft_putchar('0');
+		return (3);
 	}
-	write (1, "0x", 2);
 	ptr = (char *)malloc(i + 1);
 	ptr[i] = 0;
 	while (n > 0)
@@ -50,5 +50,5 @@ int	ft_print_punt(va_list *ap)
 		i--;
 	}
 	ft_putstr(ptr);
-	return (x + 2);
+	return (free(ptr), x + 2);
 }
