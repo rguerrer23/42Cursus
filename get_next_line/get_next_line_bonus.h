@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 17:43:06 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/05/15 17:44:34 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/05/31 18:16:18 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 # define GET_NEXT_LINE_BONUS_H
 # include <stdlib.h>
 # include <unistd.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+
+# endif
 
 char	*get_next_line(int fd);
 void	*ft_calloc(size_t count, size_t size);
