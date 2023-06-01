@@ -6,34 +6,11 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 13:13:49 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/05/31 19:06:52 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:35:11 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-char	*ft_readfile(int fd, char *buffer)
-{
-	char	*temp;
-	int		x;
-
-	if (!buffer)
-		buffer = ft_calloc(1, 1);
-	temp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	x = 1;
-	while (!ft_strchr(buffer, '\n') && x > 0)
-	{
-		x = read(fd, temp, BUFFER_SIZE);
-		if (x == -1)
-		{
-			free(buffer);
-			return (NULL);
-		}
-		temp[x] = '\0';
-		buffer = ft_strjoin(buffer, temp);
-	}
-	return (free(temp), buffer);
-}
 
 char	*ft_line(char *buffer)
 {
@@ -41,11 +18,13 @@ char	*ft_line(char *buffer)
 	char	*line;
 
 	x = 0;
-	if (!buffer[x])
+	if (!buffer || !*buffer)
 		return (NULL);
 	while (buffer[x] != '\n' && buffer[x])
 		x++;
-	line = ft_calloc(x + 2, sizeof(char));
+	if (buffer[x] == '\n')
+		x++;
+	line = ft_calloc(x + 1, sizeof(char));
 	x = 0;
 	while (buffer[x] != '\n' && buffer[x])
 	{
@@ -69,8 +48,6 @@ char	*ft_clear(char *buffer)
 	if (!buffer[x])
 		return (free(buffer), NULL);
 	buffer_clear = ft_calloc((ft_strlen(buffer) - x + 1), sizeof(char));
-	if (!buffer_clear)
-		return (free(buffer), NULL);
 	x++;
 	y = 0;
 	while (buffer[x])
@@ -82,16 +59,39 @@ char	*ft_clear(char *buffer)
 	return (free(buffer), buffer_clear);
 }
 
+char	*ft_liber(char *buffer, char *buftemp)
+{
+	char	*temp2;
+
+	if (!buffer)
+		buffer = ft_calloc(1, 1);
+	temp2 = ft_strjoin(buffer, buftemp);
+	free (buffer);
+	return (temp2);
+}
+
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer = NULL;
 	char		*line;
+	ssize_t		x;
+	char		temp[BUFFER_SIZE + 1];
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = ft_readfile(fd, buffer);
-	if (!buffer)
-		return (NULL);
+	x = 1;
+	while (x > 0)
+	{
+		x = read(fd, temp, BUFFER_SIZE);
+		if (x < 0)
+			return (free(buffer), buffer = NULL, NULL);
+		temp[x] = '\0';
+		buffer = ft_liber(buffer, temp);
+		if (!buffer)
+			return (NULL);
+		if (ft_strchr(buffer, '\n'))
+			break ;
+	}
 	line = ft_line(buffer);
 	buffer = ft_clear(buffer);
 	return (line);
