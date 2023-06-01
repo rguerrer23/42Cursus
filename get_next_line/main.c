@@ -10,4 +10,6 @@ int main ()
 	fd = open("fd.txt", O_RDONLY);
 	line = get_next_line(fd);
 	printf("%s", line);
+	line = get_next_line(fd);
+	printf("%s", line);
 }

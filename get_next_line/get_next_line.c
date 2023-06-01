@@ -17,13 +17,18 @@ char	*ft_readfile(int fd, char *buffer)
 	char	*temp;
 	int		x;
 
+	if (!buffer)
+		buffer = ft_calloc(1, 1);
 	temp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (!temp)
-		return (NULL);
 	x = 1;
 	while (!ft_strchr(buffer, '\n') && x > 0)
 	{
 		x = read(fd, temp, BUFFER_SIZE);
+		if (x == -1)
+		{
+			free(buffer);
+			return (NULL);
+		}
 		temp[x] = '\0';
 		buffer = ft_strjoin(buffer, temp);
 	}
@@ -36,20 +41,19 @@ char	*ft_line(char *buffer)
 	char	*line;
 
 	x = 0;
-	while (buffer[x] != '\n' && buffer[x] != '\0')
+	if (!buffer[x])
+		return (NULL);
+	while (buffer[x] != '\n' && buffer[x])
 		x++;
 	line = ft_calloc(x + 2, sizeof(char));
-	if (!line)
-		return (NULL);
 	x = 0;
-	while (buffer[x] != '\n' && buffer[x] != '\0')
+	while (buffer[x] != '\n' && buffer[x])
 	{
 		line[x] = buffer[x];
 		x++;
 	}
-	if (buffer[x] == '\n')
-		line[x] = buffer[x];
-	line[x++] = '\0';
+	if (buffer[x] == '\n' && buffer[x])
+		line[x++] = '\n';
 	return (line);
 }
 
@@ -60,7 +64,7 @@ char	*ft_clear(char *buffer)
 	char	*buffer_clear;
 
 	x = 0;
-	while (buffer[x] != '\n')
+	while (buffer[x] != '\n' && buffer[x])
 		x++;
 	if (!buffer[x])
 		return (free(buffer), NULL);
@@ -80,7 +84,7 @@ char	*ft_clear(char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer = NULL;
+	static char	*buffer;
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
