@@ -48,18 +48,16 @@ int	ft_atoi(const char *str)
 void	ft_fill_stack(t_stack **a, int ac, char **av)
 {
 	int i;
-	int j;
 	t_stack *tmp;
 
 	i = 1;
 	while (i < ac)
 	{
-		j = 0;
 		if (!(tmp = (t_stack *)malloc(sizeof(t_stack))))
 			ft_error();
 		tmp->value = ft_atoi(av[i]);
-		tmp->index = i - 1;
-		tmp->pos = i - 1;
+		tmp->index = 0;
+		tmp->pos = 0;
 		tmp->target_pos = 0;
 		tmp->cost_a = 0;
 		tmp->cost_b = 0;

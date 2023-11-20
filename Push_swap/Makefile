@@ -4,11 +4,12 @@ CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = src
 INC_DIR = includes
 OBJ_DIR = obj
-SRC_FILES = main.c \
-            push_swap.c \
-            stack.c \
-            operations.c \
-            utils.c
+SRC_FILES = check_args.c \
+            main.c \
+            rotate.c \
+            sort.c \
+            swap.c \
+			utils.c 
 OBJ_FILES = $(SRC_FILES:%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)

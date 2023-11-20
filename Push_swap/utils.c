@@ -69,3 +69,15 @@ int	is_sorted(t_stack **stack)
 	}
 	return (1);
 }
+
+void	ft_free_stack(t_stack **stack)
+{
+	t_stack	*tmp;
+
+	while (*stack)
+	{
+		tmp = *stack;
+		*stack = (*stack)->next;
+		free(tmp);
+	}
+}
