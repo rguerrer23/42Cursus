@@ -74,6 +74,8 @@ int main(int ac, char **av)
 	t_stack *a;
 	t_stack *b;
 
+	int	stack_size;
+
 	if (ac < 2)
 		return (0);
 	a = NULL;
@@ -81,7 +83,11 @@ int main(int ac, char **av)
 	if (!ft_check_args(ac, av))
 		ft_error();
 	ft_fill_stack(&a, ac, av);
-	ft_sort(&a, &b);
+	if (is_duplicated(a))
+		ft_error();
+	stack_size = ft_stack_size(a);
+	ft_get_index(&a, stack_size);
+	ft_sort(&a, &b, stack_size);
 	ft_free_stack(&a);
 	ft_free_stack(&b);
 	return (0);	

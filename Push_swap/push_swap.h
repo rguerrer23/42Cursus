@@ -14,6 +14,8 @@
 # define PUSH_SWAP_H
 
 # include "unistd.h"
+# include "stdlib.h"
+# include "limish.h"
 
 typedef struct	s_stack
 {
@@ -25,4 +27,3 @@ typedef struct	s_stack
 	int		cost_b;
 	struct s_stack	*next;
 }				t_stack;
-
