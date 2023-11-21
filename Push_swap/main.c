@@ -6,13 +6,13 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:28:32 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/11/15 11:28:32 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:43:15 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ft_error(void)
+void	ft_error(void)
 {
 	write(2, "Error\n", 6);
 	exit(0);
@@ -47,13 +47,14 @@ int	ft_atoi(const char *str)
 
 void	ft_fill_stack(t_stack **a, int ac, char **av)
 {
-	int i;
-	t_stack *tmp;
+	int		i;
+	t_stack	*tmp;
 
 	i = 1;
 	while (i < ac)
 	{
-		if (!(tmp = (t_stack *)malloc(sizeof(t_stack))))
+		tmp = (t_stack *)malloc(sizeof(t_stack));
+		if (!tmp)
 			ft_error();
 		tmp->value = ft_atoi(av[i]);
 		tmp->index = 0;
@@ -67,12 +68,11 @@ void	ft_fill_stack(t_stack **a, int ac, char **av)
 	}
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_stack *a;
-	t_stack *b;
-
-	int	stack_size;
+	t_stack	*a;
+	t_stack	*b;
+	int		stack_size;
 
 	if (ac < 2)
 		return (0);
@@ -88,5 +88,5 @@ int main(int ac, char **av)
 	ft_sort(&a, &b, stack_size);
 	ft_free_stack(&a);
 	ft_free_stack(&b);
-	return (0);	
+	return (0);
 }

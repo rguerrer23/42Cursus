@@ -6,21 +6,21 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 17:46:45 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/11/15 17:46:45 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:28:37 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ft_get_index(t_stack **stack, int ac)
+void	ft_get_index(t_stack **stack, int ac)
 {
 	t_stack	*ptr;
 	t_stack	*biggest;
 	int		value;
 
-	while (--stack_size > 0)
+	while (--ac > 0)
 	{
-		ptr = stack_a;
+		ptr = stack;
 		biggest = NULL;
 		value = INT_MIN;
 		while (ptr)
@@ -37,7 +37,7 @@ void ft_get_index(t_stack **stack, int ac)
 				ptr = ptr->next;
 		}
 		if (biggest != NULL)
-			biggest->index = stack_size;
+			biggest->index = ac;
 	}
 }
 
@@ -79,5 +79,25 @@ void	ft_free_stack(t_stack **stack)
 		tmp = *stack;
 		*stack = (*stack)->next;
 		free(tmp);
+	}
+}
+
+void	refresh_pos(t_stack **stack_a, t_stack **stack_b)
+{
+	int		i;
+
+	i = 1;
+	while (*stack_a)
+	{
+		(*stack_a)->pos = i;
+		(*stack_a) = (*stack_b)->next;
+		i++;
+	}
+	i = 1;
+	while (*stack_b)
+	{
+		(*stack_b)->pos = i;
+		(*stack_b) = (*stack_b)->next;
+		i++;
 	}
 }

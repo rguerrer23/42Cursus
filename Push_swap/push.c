@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 18:08:18 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/11/20 18:08:18 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:10:02 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	do_pa(t_stack **stack_a, t_stack **stack_b)
 	write(1, "pa\n", 3);
 }
 
-void do_pb(t_stack **stack_a, t_stack **stack_b)
+void	do_pb(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*tmp;
 
