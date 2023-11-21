@@ -57,7 +57,7 @@ void	ft_fill_stack(t_stack **a, int ac, char **av)
 			ft_error();
 		tmp->value = ft_atoi(av[i]);
 		tmp->index = 0;
-		tmp->pos = 0;
+		tmp->pos = i - 1;
 		tmp->target_pos = 0;
 		tmp->cost_a = 0;
 		tmp->cost_b = 0;
