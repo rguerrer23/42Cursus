@@ -84,3 +84,28 @@ void	get_target_pos(t_stack **stack_a, t_stack **stack_b)
 		tmp = tmp->next;
 	}
 }
+
+void	cheapest_move(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*tmp;
+	int		min_cost;
+	int		cost;
+	int		cost_a;
+	int		cost_b;
+
+	tmp = *stack_b;
+	min_cost = INT_MAX;
+	while (tmp)
+	{
+		cost = tmp->cost_a + tmp->cost_b;
+		if (cost < min_cost)
+		{
+			cost_a = tmp->cost_a;
+			cost_b = tmp->cost_b;
+			min_cost = cost;
+			*stack_a = tmp;
+		}
+		tmp = tmp->next;
+	}
+	move(stack_a, stack_b, cost_a, cost_b);
+}

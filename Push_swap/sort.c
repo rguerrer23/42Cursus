@@ -12,6 +12,8 @@
 
 #include "push_swap.h"
 
+void	sort_a(t_stack **stack_a)
+{}
 void	push_except_three(t_stack **stack_a, t_stack **stack_b, int stack_size)
 {
 	int	x;
@@ -55,7 +57,7 @@ void	ft_sort_three(t_stack **stack_a)
 		&& (*stack_a)->index > (*stack_a)->next->next->index)
 		do_ra(stack_a);
 	else if ((*stack_a)->index > (*stack_a)->next->index
-		&& (*stack_a)->index > (*stack_a)->next->next->index)
+		&& (*stack_a)->next->index > (*stack_a)->next->next->index)
 	{
 		do_sa(stack_a);
 		do_rra(stack_a);
@@ -72,7 +74,10 @@ void	ft_sort_big(t_stack **stack_a, t_stack **stack_b, int stack_size)
 		get_target_pos(stack_a, stack_b);
 		get_cost_a(stack_a, stack_b);
 		get_cost_b(stack_b);
+		cheapest_move(stack_a, stack_b);
 	}
+	if(!is_sorted(stack_a))
+		sort_a(stack_a);
 }
 
 void	ft_sort(t_stack **stack_a, t_stack **stack_b, int stack_size)
