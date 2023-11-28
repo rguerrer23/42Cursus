@@ -1,33 +1,39 @@
 NAME = push_swap
+
 CC = gcc
+
 CFLAGS = -Wall -Wextra -Werror
-SRC_DIR = src
-INC_DIR = includes
-OBJ_DIR = obj
-SRC_FILES = check_args.c \
+
+SOURCES = check_args.c \
             main.c \
+            move.c \
+            push.c \
             rotate.c \
+            rotate2.c \
             sort.c \
             swap.c \
-			utils.c 
-OBJ_FILES = $(SRC_FILES:%.c=$(OBJ_DIR)/%.o)
+            target_cost.c \
+            utils.c 
+
+INCLUDE = push_swap.h
+
+OBJ = $(SOURCES:.c=.o)
+
+RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJ_FILES)
-	$(CC) $(CFLAGS) -I$(INC_DIR) $^ -o $@
+$(NAME): $(OBJ) $(INCLUDE)
+	$(CC) $(CFLAGS) $(SOURCES) -o $(NAME)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
-
-$(OBJ_DIR):
-	mkdir -p $@
+%.o: %.c
+	$(CC) -c $(CFLAGS) $?
 
 clean:
-	rm -rf $(OBJ_DIR)
+	$(RM) $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 

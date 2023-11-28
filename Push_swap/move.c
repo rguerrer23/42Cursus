@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves.c                                            :+:      :+:    :+:   */
+/*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:10:53 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/11/28 11:10:53 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/11/28 17:19:49 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	reverse_both(t_stack **stack_a, t_stack **stack_b, int *cost_a, int *cost_b)
+void	reverse_both(t_stack **stack_a, t_stack **stack_b, int *a, int *b)
 {
-	while (*cost_a < 0 && *cost_b < 0)
+	while (*a < 0 && *b < 0)
 	{
 		do_rrr(stack_a, stack_b);
-		(*cost_a)++;
-		(*cost_b)++;
+		(*a)++;
+		(*b)++;
 	}
 }
 
-void	rotate_both(t_stack **stack_a, t_stack **stack_b, int *cost_a, int *cost_b)
+void	rotate_both(t_stack **stack_a, t_stack **stack_b, int *a, int *b)
 {
-	while (*cost_a > 0 && *cost_b > 0)
+	while (*a > 0 && *b > 0)
 	{
 		do_rr(stack_a, stack_b);
-		(*cost_a)--;
-		(*cost_b)--;
+		(*a)--;
+		(*b)--;
 	}
 }
 
@@ -72,11 +72,11 @@ void	rotate_a(t_stack **stack_a, int *cost_a)
 	}
 }
 
-void  move(t_stack **stack_a, t_stack **stack_b, int cost_a, int cost_b)
+void	move(t_stack **stack_a, t_stack **stack_b, int cost_a, int cost_b)
 {
-	if(cost_a < 0 && cost_b < 0)
+	if (cost_a < 0 && cost_b < 0)
 		rotate_both(stack_a, stack_b, &cost_a, &cost_b);
-	else if(cost_a > 0 && cost_b > 0)
+	else if (cost_a > 0 && cost_b > 0)
 		reverse_both(stack_a, stack_b, &cost_a, &cost_b);
 	rotate_a(stack_a, &cost_a);
 	rotate_b(stack_b, &cost_b);

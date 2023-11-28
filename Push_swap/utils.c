@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 17:46:45 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/11/21 17:28:37 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/11/28 17:53:36 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_get_index(t_stack **stack, int ac)
 
 	while (--ac > 0)
 	{
-		ptr = stack;
+		ptr = (*stack);
 		biggest = NULL;
 		value = INT_MIN;
 		while (ptr)

@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:28:23 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/11/21 18:27:23 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/11/28 17:53:01 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	get_cost_a(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*tmp;
-	int		cost;
 	int		stack_size;
 
 	tmp = *stack_b;

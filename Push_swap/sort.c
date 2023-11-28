@@ -6,14 +6,40 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:39:01 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/11/21 18:05:57 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/11/28 17:52:23 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 void	sort_a(t_stack **stack_a)
-{}
+{
+	int		size;
+	int		i;
+	t_stack	*ptr;
+
+	size = ft_stack_size(*stack_a);
+	i = 0;
+	ptr = *stack_a;
+	while (i < size)
+	{
+		if (ptr->index == size)
+			break ;
+		ptr = ptr->next;
+		i++;
+	}
+	if (i < size / 2)
+	{
+		while ((*stack_a)->index != size)
+			do_ra(stack_a);
+	}
+	else
+	{
+		while ((*stack_a)->index != size)
+			do_rra(stack_a);
+	}
+}
+
 void	push_except_three(t_stack **stack_a, t_stack **stack_b, int stack_size)
 {
 	int	x;
@@ -22,6 +48,7 @@ void	push_except_three(t_stack **stack_a, t_stack **stack_b, int stack_size)
 
 	count = 0;
 	limit = stack_size / 2;
+	x = 0;
 	while (x < limit)
 	{
 		if ((*stack_a)->index < limit)
@@ -76,7 +103,7 @@ void	ft_sort_big(t_stack **stack_a, t_stack **stack_b, int stack_size)
 		get_cost_b(stack_b);
 		cheapest_move(stack_a, stack_b);
 	}
-	if(!is_sorted(stack_a))
+	if (!is_sorted(stack_a))
 		sort_a(stack_a);
 }
 

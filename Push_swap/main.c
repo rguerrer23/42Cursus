@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:28:32 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/11/21 16:43:15 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/11/28 17:46:23 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	main(int ac, char **av)
 	if (!ft_check_args(ac, av))
 		ft_error();
 	ft_fill_stack(&a, ac, av);
-	if (is_duplicated(a))
+	if (is_duplicate(a))
 		ft_error();
 	stack_size = ft_stack_size(a);
 	ft_get_index(&a, stack_size);
