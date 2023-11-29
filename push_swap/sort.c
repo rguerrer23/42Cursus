@@ -42,28 +42,29 @@ void	sort_a(t_stack **stack_a)
 
 void	push_except_three(t_stack **stack_a, t_stack **stack_b, int stack_size)
 {
-	int	x;
-	int	limit;
-	int	count;
+    int	limit;
+    int	count;
+    int	x;
 
-	count = 0;
-	limit = stack_size / 2;
-	x = 0;
-	while (x < limit)
-	{
-		if ((*stack_a)->index < limit)
-		{
-			do_pb(stack_a, stack_b);
-			count++;
-		}
-		else
-			do_ra(stack_a);
-	}
-	while (count < stack_size - 3)
-	{
-		do_pb(stack_a, stack_b);
-		count++;
-	}
+    count = 0;
+    limit = stack_size / 2;
+    x = 0;
+    while (x < stack_size && stack_size > 6 &&count < limit)
+    {
+        if ((*stack_a)->index <= limit)
+        {
+            do_pb(stack_a, stack_b);
+            count++;
+        }
+        else
+            do_ra(stack_a);
+        x++;
+    }
+    while (count < stack_size - 3)
+    {
+        do_pb(stack_a, stack_b);
+        count++;
+    }
 }
 
 void	ft_sort_three(t_stack **stack_a)
@@ -111,7 +112,7 @@ void	ft_sort(t_stack **stack_a, t_stack **stack_b, int stack_size)
 {
 	if (stack_size == 2 && !is_sorted(stack_a))
 		do_sa(stack_a);
-	else if (stack_size == 3)
+	else if (stack_size == 3 && !is_sorted(stack_a))
 		ft_sort_three(stack_a);
 	else if (stack_size > 3 && !is_sorted(stack_a))
 		ft_sort_big(stack_a, stack_b, stack_size);

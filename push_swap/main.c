@@ -47,25 +47,30 @@ int	ft_atoi(const char *str)
 
 void	ft_fill_stack(t_stack **a, int ac, char **av)
 {
-	int		i;
-	t_stack	*tmp;
+    int		i;
+    t_stack	*tmp;
+    t_stack	*last = NULL;
 
-	i = 1;
-	while (i < ac)
-	{
-		tmp = (t_stack *)malloc(sizeof(t_stack));
-		if (!tmp)
-			ft_error();
-		tmp->value = ft_atoi(av[i]);
-		tmp->index = 0;
-		tmp->pos = i - 1;
-		tmp->target_pos = 0;
-		tmp->cost_a = 0;
-		tmp->cost_b = 0;
-		tmp->next = *a;
-		*a = tmp;
-		i++;
-	}
+    i = 1;
+    while (i < ac)
+    {
+        tmp = (t_stack *)malloc(sizeof(t_stack));
+        if (!tmp)
+            ft_error();
+        tmp->value = ft_atoi(av[i]);
+        tmp->index = 0;
+        tmp->pos = i - 1;
+        tmp->target_pos = 0;
+        tmp->cost_a = 0;
+        tmp->cost_b = 0;
+        tmp->next = NULL;
+        if (last)
+            last->next = tmp;
+        else
+            *a = tmp;
+        last = tmp;
+        i++;
+    }
 }
 
 int	main(int ac, char **av)
