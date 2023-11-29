@@ -45,7 +45,6 @@ void				ft_free_stack(t_stack **stack);
 int					is_sorted(t_stack **stack);
 void				ft_get_index(t_stack **stack, int ac);
 int					ft_stack_size(t_stack *stack);
-int					is_sorted(t_stack **stack);
 void				do_sa(t_stack **stack_a);
 void				do_sb(t_stack **stack_b);
 void				do_ss(t_stack **stack_a, t_stack **stack_b);

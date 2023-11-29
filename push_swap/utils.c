@@ -84,20 +84,22 @@ void	ft_free_stack(t_stack **stack)
 
 void	refresh_pos(t_stack **stack_a, t_stack **stack_b)
 {
-	int		i;
+    int		i;
+    t_stack *temp_a = *stack_a;
+    t_stack *temp_b = *stack_b;
 
-	i = 1;
-	while (*stack_a)
-	{
-		(*stack_a)->pos = i;
-		(*stack_a) = (*stack_b)->next;
-		i++;
-	}
-	i = 1;
-	while (*stack_b)
-	{
-		(*stack_b)->pos = i;
-		(*stack_b) = (*stack_b)->next;
-		i++;
-	}
+    i = 1;
+    while (temp_a)
+    {
+        temp_a->pos = i;
+        temp_a = temp_a->next;
+        i++;
+    }
+    i = 1;
+    while (temp_b)
+    {
+        temp_b->pos = i;
+        temp_b = temp_b->next;
+        i++;
+    }
 }
