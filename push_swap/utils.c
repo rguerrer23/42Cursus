@@ -58,16 +58,16 @@ int	ft_stack_size(t_stack *stack)
 
 int	is_sorted(t_stack **stack)
 {
-	t_stack	*ptr;
+    t_stack	*ptr;
 
-	ptr = *stack;
-	while (ptr->next)
-	{
-		if (ptr->value > ptr->next->value)
-			return (0);
-		ptr = ptr->next;
-	}
-	return (1);
+    ptr = *stack;
+    while (ptr->next)
+    {
+        if (ptr->index > ptr->next->index)
+            return (0);
+        ptr = ptr->next;
+    }
+    return (1);
 }
 
 void	ft_free_stack(t_stack **stack)

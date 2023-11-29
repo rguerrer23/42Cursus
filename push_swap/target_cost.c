@@ -66,6 +66,8 @@ int	get_target(int index, t_stack **stack)
 		}
 		tmp = tmp->next;
 	}
+	if(target == 1)
+		target = 0;
 	return (target);
 }
 
@@ -102,7 +104,6 @@ void	cheapest_move(t_stack **stack_a, t_stack **stack_b)
 			cost_a = tmp->cost_a;
 			cost_b = tmp->cost_b;
 			min_cost = cost;
-			*stack_a = tmp;
 		}
 		tmp = tmp->next;
 	}

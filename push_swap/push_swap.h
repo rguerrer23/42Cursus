@@ -60,5 +60,6 @@ void				do_rb(t_stack **stack_b);
 void				do_rrb(t_stack **stack_b);
 void				do_rr(t_stack **stack_a, t_stack **stack_b);
 void				do_rrr(t_stack **stack_a, t_stack **stack_b);
+void   print_stack(t_stack *stack_a, t_stack *stack_b);
 
 #endif
