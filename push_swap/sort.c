@@ -82,32 +82,14 @@ void	ft_sort_three(t_stack **stack_a)
 		&& (*stack_a)->index > (*stack_a)->next->next->index)
 		do_rra(stack_a);
 	else if ((*stack_a)->index > (*stack_a)->next->index
-		&& (*stack_a)->index > (*stack_a)->next->next->index)
+		&& (*stack_a)->index > (*stack_a)->next->next->index
+		&& (*stack_a)->next->index < (*stack_a)->next->next->index)
 		do_ra(stack_a);
 	else if ((*stack_a)->index > (*stack_a)->next->index
 		&& (*stack_a)->next->index > (*stack_a)->next->next->index)
 	{
 		do_sa(stack_a);
 		do_rra(stack_a);
-	}
-}
-
-void   print_stack(t_stack *stack_a, t_stack *stack_b)
-{
-	t_stack *tmp_a = stack_a;
-	t_stack *tmp_b = stack_b;
-
-	printf("stack_a:\n");
-	while (tmp_a)
-	{
-		printf("value: %d, index: %d, pos: %d, target_pos: %d, cost_a: %d, cost_b: %d\n", tmp_a->value, tmp_a->index, tmp_a->pos, tmp_a->target_pos, tmp_a->cost_a, tmp_a->cost_b);
-		tmp_a = tmp_a->next;
-	}
-	printf("stack_b:\n");
-	while (tmp_b)
-	{
-		printf("value: %d, index: %d, pos: %d, target_pos: %d, cost_a: %d, cost_b: %d\n", tmp_b->value, tmp_b->index, tmp_b->pos, tmp_b->target_pos, tmp_b->cost_a, tmp_b->cost_b);
-		tmp_b = tmp_b->next;
 	}
 }
 
@@ -122,12 +104,10 @@ void	ft_sort_big(t_stack **stack_a, t_stack **stack_b, int stack_size)
 		get_target_pos(stack_a, stack_b);
 		get_cost_a(stack_a, stack_b);
 		get_cost_b(stack_b);
-		print_stack(*stack_a, *stack_b);
 		cheapest_move(stack_a, stack_b);
 	}
 	if (!is_sorted(stack_a))
 		sort_a(stack_a);
-	print_stack(*stack_a, *stack_b);
 }
 
 void	ft_sort(t_stack **stack_a, t_stack **stack_b, int stack_size)

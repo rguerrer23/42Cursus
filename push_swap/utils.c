@@ -88,14 +88,14 @@ void	refresh_pos(t_stack **stack_a, t_stack **stack_b)
     t_stack *temp_a = *stack_a;
     t_stack *temp_b = *stack_b;
 
-    i = 1;
+    i = 0;
     while (temp_a)
     {
         temp_a->pos = i;
         temp_a = temp_a->next;
         i++;
     }
-    i = 1;
+    i = 0;
     while (temp_b)
     {
         temp_b->pos = i;
