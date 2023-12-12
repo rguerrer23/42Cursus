@@ -26,7 +26,7 @@ void	ft_get_index(t_stack **stack, int ac)
 		while (ptr)
 		{
 			if (ptr->value == INT_MIN && ptr->index == 0)
-				ptr->index = 1;
+				ptr->index = 0;
 			if (ptr->value > value && ptr->index == 0)
 			{
 				value = ptr->value;
