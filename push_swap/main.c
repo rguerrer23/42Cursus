@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:28:32 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/11/28 17:46:23 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/12/12 16:36:00 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,31 @@ int	ft_atoi(const char *str)
 
 void	ft_fill_stack(t_stack **a, int ac, char **av)
 {
-    int		i;
-    t_stack	*tmp;
-    t_stack	*last = NULL;
+	int		i;
+	t_stack	*tmp;
+	t_stack	*last;
 
-    i = 1;
-    while (i < ac)
-    {
-        tmp = (t_stack *)malloc(sizeof(t_stack));
-        if (!tmp)
-            ft_error();
-        tmp->value = ft_atoi(av[i]);
-        tmp->index = 0;
-        tmp->pos = i - 1;
-        tmp->target_pos = 0;
-        tmp->cost_a = 0;
-        tmp->cost_b = 0;
-        tmp->next = NULL;
-        if (last)
-            last->next = tmp;
-        else
-            *a = tmp;
-        last = tmp;
-        i++;
-    }
+	last = NULL;
+	i = 1;
+	while (i < ac)
+	{
+		tmp = (t_stack *)malloc(sizeof(t_stack));
+		if (!tmp)
+			ft_error();
+		tmp->value = ft_atoi(av[i]);
+		tmp->index = 0;
+		tmp->pos = i - 1;
+		tmp->target_pos = 0;
+		tmp->cost_a = 0;
+		tmp->cost_b = 0;
+		tmp->next = NULL;
+		if (last)
+			last->next = tmp;
+		else
+			*a = tmp;
+		last = tmp;
+		i++;
+	}
 }
 
 int	main(int ac, char **av)
