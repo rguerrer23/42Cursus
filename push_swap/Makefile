@@ -5,15 +5,16 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 SOURCES = check_args.c \
-            main.c \
-            move.c \
-            push.c \
-            rotate.c \
-            rotate2.c \
-            sort.c \
-            swap.c \
-            target_cost.c \
-            utils.c 
+			check_dupli.c \
+			main.c \
+			move.c \
+			push.c \
+			rotate.c \
+			rotate2.c \
+			sort.c \
+			swap.c \
+			target_cost.c \
+			utils.c 
 
 INCLUDE = push_swap.h
 
