@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:28:23 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/11/28 17:53:01 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/12/13 13:32:25 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,53 +32,49 @@ void	get_cost_a(t_stack **stack_a, t_stack **stack_b)
 
 void	get_cost_b(t_stack **stack_b)
 {
-    t_stack	*tmp;
-	int stack_size;
+	t_stack	*tmp;
+	int		stack_size;
 
-    tmp = *stack_b;
+	tmp = *stack_b;
 	stack_size = ft_stack_size(tmp);
-    while (tmp)
-    {
-        tmp->cost_b = tmp->pos;
+	while (tmp)
+	{
+		tmp->cost_b = tmp->pos;
 		if (tmp->pos > stack_size / 2)
 			tmp->cost_b = (stack_size - tmp->pos) * -1;
-        tmp = tmp->next;
-    }
+		tmp = tmp->next;
+	}
 }
 
 int	get_target(int index, t_stack **stack)
 {
-    t_stack	*tmp;
-    int		target;
-    int		min_diff;
-    int		diff;
-    int		min_index;
-    int		min_pos;
+	t_stack	*tmp;
+	int		target;
+	int		min_diff;
+	int		min_index;
+	int		min_pos;
 
-    target = -1;
-    min_diff = INT_MAX;
-    min_index = INT_MAX;
-    tmp = *stack;
-    while (tmp)
-    {
-        diff = tmp->index - index;
-        if (diff >= 0 && diff < min_diff)
-        {
-            min_diff = diff;
-            target = tmp->pos;
-        }
-        if (tmp->index < min_index)
-        {
-            min_index = tmp->index;
-            min_pos = tmp->pos;
-        }
-        tmp = tmp->next;
-    }
-    if (target == -1)
-    {
-        target = min_pos;
-    }
-    return (target);
+	target = -1;
+	min_diff = INT_MAX;
+	min_index = INT_MAX;
+	tmp = *stack;
+	while (tmp)
+	{
+		if (tmp->index - index >= 0 && tmp->index - index < min_diff)
+		{
+			min_diff = tmp->index - index;
+			target = tmp->pos;
+		}
+		if (tmp->index < min_index)
+		{
+			min_index = tmp->index;
+			min_pos = tmp->pos;
+		}
+		tmp = tmp->next;
+	}
+	if (target == -1)
+		target = min_pos;
+	return (target);
 }
 
 void	get_target_pos(t_stack **stack_a, t_stack **stack_b)
@@ -108,7 +104,7 @@ void	cheapest_move(t_stack **stack_a, t_stack **stack_b)
 	min_cost = INT_MAX;
 	while (tmp)
 	{
-		cost = tmp->cost_a + tmp->cost_b;
+		cost = (abs)(tmp->cost_a) + (abs)(tmp->cost_b);
 		if (cost < min_cost)
 		{
 			cost_a = tmp->cost_a;

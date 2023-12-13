@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 17:46:45 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/11/28 17:53:36 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/12/13 11:29:11 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,16 @@ int	ft_stack_size(t_stack *stack)
 
 int	is_sorted(t_stack **stack)
 {
-    t_stack	*ptr;
+	t_stack	*ptr;
 
-    ptr = *stack;
-    while (ptr->next)
-    {
-        if (ptr->index > ptr->next->index)
-            return (0);
-        ptr = ptr->next;
-    }
-    return (1);
+	ptr = *stack;
+	while (ptr->next)
+	{
+		if (ptr->index > ptr->next->index)
+			return (0);
+		ptr = ptr->next;
+	}
+	return (1);
 }
 
 void	ft_free_stack(t_stack **stack)
@@ -84,22 +84,24 @@ void	ft_free_stack(t_stack **stack)
 
 void	refresh_pos(t_stack **stack_a, t_stack **stack_b)
 {
-    int		i;
-    t_stack *temp_a = *stack_a;
-    t_stack *temp_b = *stack_b;
+	int		i;
+	t_stack	*temp_a;
+	t_stack	*temp_b;
 
-    i = 0;
-    while (temp_a)
-    {
-        temp_a->pos = i;
-        temp_a = temp_a->next;
-        i++;
-    }
-    i = 0;
-    while (temp_b)
-    {
-        temp_b->pos = i;
-        temp_b = temp_b->next;
-        i++;
-    }
+	temp_a = *stack_a;
+	temp_b = *stack_b;
+	i = 0;
+	while (temp_a)
+	{
+		temp_a->pos = i;
+		temp_a = temp_a->next;
+		i++;
+	}
+	i = 0;
+	while (temp_b)
+	{
+		temp_b->pos = i;
+		temp_b = temp_b->next;
+		i++;
+	}
 }

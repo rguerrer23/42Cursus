@@ -1,5 +1,5 @@
 # 42 Cursus
-libft\n
+libft
 ft_printf
 get_next_line
 push_swap
