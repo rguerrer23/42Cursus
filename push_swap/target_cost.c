@@ -46,35 +46,40 @@ void	get_cost_b(t_stack **stack_b)
 	}
 }
 
+typedef struct s_target
+{
+    int		target;
+    int		min_diff;
+    int		min_index;
+    int		min_pos;
+}	t_target;
+
 int	get_target(int index, t_stack **stack)
 {
-	t_stack	*tmp;
-	int		target;
-	int		min_diff;
-	int		min_index;
-	int		min_pos;
+    t_stack	*tmp;
+    t_target	t;
 
-	target = -1;
-	min_diff = INT_MAX;
-	min_index = INT_MAX;
-	tmp = *stack;
-	while (tmp)
-	{
-		if (tmp->index - index >= 0 && tmp->index - index < min_diff)
-		{
-			min_diff = tmp->index - index;
-			target = tmp->pos;
-		}
-		if (tmp->index < min_index)
-		{
-			min_index = tmp->index;
-			min_pos = tmp->pos;
-		}
-		tmp = tmp->next;
-	}
-	if (target == -1)
-		target = min_pos;
-	return (target);
+    t.target = -1;
+    t.min_diff = INT_MAX;
+    t.min_index = INT_MAX;
+    tmp = *stack;
+    while (tmp)
+    {
+        if (tmp->index - index >= 0 && tmp->index - index < t.min_diff)
+        {
+            t.min_diff = tmp->index - index;
+            t.target = tmp->pos;
+        }
+        if (tmp->index < t.min_index)
+        {
+            t.min_index = tmp->index;
+            t.min_pos = tmp->pos;
+        }
+        tmp = tmp->next;
+    }
+    if (t.target == -1)
+        t.target = t.min_pos;
+    return (t.target);
 }
 
 void	get_target_pos(t_stack **stack_a, t_stack **stack_b)
