@@ -6,11 +6,11 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 20:15:52 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/04/27 20:15:52 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:46:51 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {

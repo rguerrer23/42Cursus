@@ -6,11 +6,11 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 10:41:20 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/04/28 10:41:20 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:46:45 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipex.h"
 
 int	lenp(char const *s, char c)
 {
