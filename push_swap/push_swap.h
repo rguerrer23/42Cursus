@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:22:49 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/11/28 17:51:00 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/12/20 16:48:26 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ typedef struct s_stack
 	int				cost_b;
 	struct s_stack	*next;
 }					t_stack;
+
+typedef struct s_target
+{
+	int		target;
+	int		min_diff;
+	int		min_index;
+	int		min_pos;
+}	t_target;
 
 int					main(int ac, char **av);
 void				ft_error(void);
