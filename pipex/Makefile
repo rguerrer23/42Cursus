@@ -8,6 +8,10 @@ SOURCES = pipex.c \
 			utils.c \
 			libft/ft_split.c \
 			libft/ft_putstr_fd.c \
+			libft/ft_strjoin.c \
+			libft/ft_strdup.c \
+			libft/ft_strncmp.c \
+			libft/ft_strlen.c \
 
 INCLUDE = pipex.h
 
@@ -21,7 +25,7 @@ $(NAME): $(OBJ) $(INCLUDE)
 	$(CC) $(CFLAGS) $(SOURCES) -o $(NAME)
 
 %.o: %.c
-	$(CC) -c $(CFLAGS) $?
+	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
 	$(RM) $(OBJ)

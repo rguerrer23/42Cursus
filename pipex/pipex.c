@@ -23,7 +23,7 @@ int	child_process(int *fd, char **cmd, char **env, char *file)
 	dup2(fd2, STDIN_FILENO);
 	dup2(fd[1], STDOUT_FILENO);
 	close(fd[1]);
-	if (execve(cmd[0], cmd, env) == -1)
+	if (execve(get_cmd_path(cmd[0], env), cmd, env) == -1)
 		ft_error("Command error");
 	return (0);
 }
@@ -39,7 +39,7 @@ int	parent_process(int *fd, char **cmd, char **env, char *file)
 	dup2(fd[0], STDIN_FILENO);
 	dup2(fd2, STDOUT_FILENO);
 	close(fd[0]);
-	if (execve(cmd[0], cmd, env) == -1)
+	if (execve(get_cmd_path(cmd[0], env), cmd, env) == -1)
 		ft_error("Command error");
 	return (0);
 }
