@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 11:00:47 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/12/19 11:00:47 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/12/21 11:38:12 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,20 @@ char	*get_env_var(char *var, char **env)
 
 char	*get_cmd_path(char *cmd, char **env)
 {
-    char	**path_dirs;
-    char	*path;
-    int		i;
+	char	**path_dirs;
+	char	*path;
+	int		i;
 
-    path_dirs = ft_split(get_env_var("PATH", env), ':');
-    i = 0;
-    while (path_dirs[i])
-    {
-        path = ft_strjoin(path_dirs[i], "/");
-        path = ft_strjoin(path, cmd);
-        if (access(path, X_OK) == 0)
-            return (path);
-        i++;
-    }
-    ft_error("Command not found");
-    return (NULL);
+	path_dirs = ft_split(get_env_var("PATH", env), ':');
+	i = 0;
+	while (path_dirs[i])
+	{
+		path = ft_strjoin(path_dirs[i], "/");
+		path = ft_strjoin(path, cmd);
+		if (access(path, X_OK) == 0)
+			return (path);
+		i++;
+	}
+	ft_error("Command not found");
+	return (NULL);
 }
-
-

@@ -14,7 +14,8 @@ SOURCES = check_args.c \
 			sort.c \
 			swap.c \
 			target_cost.c \
-			utils.c 
+			utils.c \
+			ft_split.c
 
 INCLUDE = push_swap.h
 

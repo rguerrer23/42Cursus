@@ -6,11 +6,12 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:28:32 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/12/13 13:29:41 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/12/21 12:53:47 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 void	ft_error(void)
 {
@@ -45,14 +46,12 @@ int	ft_atoi(const char *str)
 	return (num * signo);
 }
 
-void	ft_fill_stack(t_stack **a, int ac, char **av)
+void	ft_fill_stack(t_stack **a, int ac, char **av, int i)
 {
-	int		i;
 	t_stack	*tmp;
 	t_stack	*last;
 
 	last = NULL;
-	i = 1;
 	while (i < ac)
 	{
 		tmp = (t_stack *)malloc(sizeof(t_stack));
@@ -78,7 +77,7 @@ int	main(int ac, char **av)
 {
 	t_stack	*a;
 	t_stack	*b;
-	int		stack_size;
+	char	**arg;
 
 	if (ac < 2)
 		return (0);
@@ -86,12 +85,18 @@ int	main(int ac, char **av)
 	b = NULL;
 	if (!ft_check_args(ac, av))
 		ft_error();
-	ft_fill_stack(&a, ac, av);
+	if (ac == 2)
+	{
+		arg = ft_split(av[1], ' ');
+		ac = ft_split_len(arg);
+		ft_fill_stack(&a, ac, arg, 0);
+	}
+	else
+		ft_fill_stack(&a, ac, av, 1);
 	if (is_duplicate(a))
 		ft_error();
-	stack_size = ft_stack_size(a);
-	ft_get_index(&a, stack_size);
-	ft_sort(&a, &b, stack_size);
+	ft_get_index(&a, ft_stack_size(a));
+	ft_sort(&a, &b, ft_stack_size(a));
 	ft_free_stack(&a);
 	ft_free_stack(&b);
 	return (0);

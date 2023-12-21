@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:22:49 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/12/20 16:48:26 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/12/21 12:41:14 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,7 @@ void				do_rb(t_stack **stack_b);
 void				do_rrb(t_stack **stack_b);
 void				do_rr(t_stack **stack_a, t_stack **stack_b);
 void				do_rrr(t_stack **stack_a, t_stack **stack_b);
+char				**ft_split(char const *s, char c);
+int					ft_split_len(char **str);
 
 #endif

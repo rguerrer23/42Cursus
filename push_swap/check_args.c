@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:30:20 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/12/20 16:47:12 by rguerrer         ###   ########.fr       */
+/*   Updated: 2023/12/21 12:26:06 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,23 @@ int	ft_isint(char *str)
 
 int	ft_check_args(int ac, char **av)
 {
-	int	i;
+	int		i;
+	int		j;
+	char	**arg;
 
 	i = 1;
+	j = 0;
 	while (i < ac)
 	{
-		if (!ft_isint(av[i]))
+		arg = ft_split(av[i], ' ');
+		if (arg == NULL)
 			return (0);
+		while (arg[j])
+		{
+			if (!ft_isint(arg[j]))
+				return (0);
+			j++;
+		}
 		i++;
 	}
 	return (1);
