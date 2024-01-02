@@ -48,7 +48,6 @@ int	main(int ac, char **av, char **env)
 {
 	int		fd[2];
 	int		pid;
-	int		status;
 	char	**cmd1;
 	char	**cmd2;
 
@@ -61,12 +60,8 @@ int	main(int ac, char **av, char **env)
 	pid = fork();
 	if (pid == -1)
 		ft_error("Fork error");
-	if (pid == 0)
+	if (!pid)
 		child_process(fd, cmd1, env, av[1]);
-	else
-	{
-		waitpid(pid, &status, 0);
-		parent_process(fd, cmd2, env, av[4]);
-	}
+	parent_process(fd, cmd2, env, av[4]);
 	return (0);
 }

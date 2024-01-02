@@ -19,6 +19,16 @@ void	ft_error(char *str)
 	exit(1);
 }
 
+void	ft_free_array(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+		free(array[i++]);
+	free(array);
+}
+
 char	*get_env_var(char *var, char **env)
 {
 	int		i;
@@ -54,7 +64,10 @@ char	*get_cmd_path(char *cmd, char **env)
 		path = ft_strjoin(path_dirs[i], "/");
 		path = ft_strjoin(path, cmd);
 		if (access(path, X_OK) == 0)
+		{
+			ft_free_array(path_dirs);
 			return (path);
+		}
 		i++;
 	}
 	ft_error("Command not found");
