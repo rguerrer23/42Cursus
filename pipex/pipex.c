@@ -12,36 +12,41 @@
 
 #include "pipex.h"
 
-int	child_process(int *fd, char **cmd, char **env, char *file)
+void	child_process(int *fd, char **cmd, char **env, char *file)
 {
 	int		fd2;
 
 	close(fd[0]);
-	fd2 = open(file, O_RDONLY);
+	fd2 = open(file, O_RDONLY, 0777);
 	if (fd2 == -1)
-		ft_error("File error");
-	dup2(fd2, STDIN_FILENO);
-	dup2(fd[1], STDOUT_FILENO);
-	close(fd[1]);
+		ft_error("-bash: infile: No such file or directory");
+	dup2(fd2, 0);
+	dup2(fd[1], 1);
 	if (execve(get_cmd_path(cmd[0], env), cmd, env) == -1)
+	{
 		ft_error("Command error");
-	return (0);
+		ft_free_array(cmd);
+		exit(0);
+	}
 }
 
-int	parent_process(int *fd, char **cmd, char **env, char *file)
+void	parent_process(int *fd, char **cmd, char **env, char *file)
 {
 	int		fd2;
 
 	close(fd[1]);
-	fd2 = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	fd2 = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fd2 == -1)
 		ft_error("File error");
-	dup2(fd[0], STDIN_FILENO);
-	dup2(fd2, STDOUT_FILENO);
+	dup2(fd2, 1);
+	dup2(fd[0], 0);
 	close(fd[0]);
 	if (execve(get_cmd_path(cmd[0], env), cmd, env) == -1)
+	{
 		ft_error("Command error");
-	return (0);
+		ft_free_array(cmd);
+		exit(0);
+	}
 }
 
 int	main(int ac, char **av, char **env)
@@ -58,10 +63,11 @@ int	main(int ac, char **av, char **env)
 	if (pipe(fd) == -1)
 		ft_error("Pipe error");
 	pid = fork();
-	if (pid == -1)
+	if (pid < 0)
 		ft_error("Fork error");
 	if (!pid)
 		child_process(fd, cmd1, env, av[1]);
-	parent_process(fd, cmd2, env, av[4]);
+	else
+		parent_process(fd, cmd2, env, av[4]);
 	return (0);
 }

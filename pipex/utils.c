@@ -54,22 +54,29 @@ char	*get_env_var(char *var, char **env)
 char	*get_cmd_path(char *cmd, char **env)
 {
 	char	**path_dirs;
+	char	*exec_path;
 	char	*path;
 	int		i;
+	char	*tmp;
 
 	path_dirs = ft_split(get_env_var("PATH", env), ':');
+	tmp = ft_strdup(cmd);
 	i = 0;
 	while (path_dirs[i])
 	{
 		path = ft_strjoin(path_dirs[i], "/");
-		path = ft_strjoin(path, cmd);
-		if (access(path, X_OK) == 0)
+		exec_path = ft_strjoin(path, tmp);
+		free(path);
+		if (access(exec_path, X_OK | F_OK) == 0)
 		{
-			ft_free_array(path_dirs);
-			return (path);
+			free(tmp);
+			return (exec_path);
 		}
+		free(exec_path);
 		i++;
 	}
+	free(tmp);
+	ft_free_array(path_dirs);
 	ft_error("Command not found");
-	return (NULL);
+	return (cmd);
 }
