@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:22:49 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/12/21 12:41:14 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:04:16 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 typedef struct s_stack
 {
@@ -48,7 +49,7 @@ void				get_target_pos(t_stack **stack_a, t_stack **stack_b);
 void				get_cost_a(t_stack **stack_a, t_stack **stack_b);
 void				get_cost_b(t_stack **stack_b);
 void				refresh_pos(t_stack **stack_a, t_stack **stack_b);
-void				ft_free_stack(t_stack **stack);
+void				ft_free_stack(t_stack **a, t_stack **b);
 int					is_sorted(t_stack **stack);
 void				ft_get_index(t_stack **stack, int ac);
 int					ft_stack_size(t_stack *stack);
@@ -69,5 +70,6 @@ void				do_rr(t_stack **stack_a, t_stack **stack_b);
 void				do_rrr(t_stack **stack_a, t_stack **stack_b);
 char				**ft_split(char const *s, char c);
 int					ft_split_len(char **str);
+void				ft_clean(char **str);
 
 #endif

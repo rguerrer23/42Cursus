@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 17:46:45 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/12/13 11:29:11 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:55:31 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,20 @@ int	is_sorted(t_stack **stack)
 	return (1);
 }
 
-void	ft_free_stack(t_stack **stack)
+void	ft_free_stack(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
 
-	while (*stack)
+	while (*a)
 	{
-		tmp = *stack;
-		*stack = (*stack)->next;
+		tmp = *a;
+		*a = (*a)->next;
+		free(tmp);
+	}
+	while (*b)
+	{
+		tmp = *b;
+		*b = (*b)->next;
 		free(tmp);
 	}
 }

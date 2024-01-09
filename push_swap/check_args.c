@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:30:20 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/12/21 13:08:00 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:04:40 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,7 @@ int	ft_check_args(int ac, char **av)
 			return (0);
 		i++;
 	}
+	if (ac == 2)
+		ft_clean(arg);
 	return (1);
 }

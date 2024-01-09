@@ -6,17 +6,35 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:28:32 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/12/21 12:53:47 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:00:08 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
+void	ft_leaks(void)
+{
+	system("leaks push_swap");
+}
+
 void	ft_error(void)
 {
 	write(2, "Error\n", 6);
 	exit(0);
+}
+
+void	ft_clean(char **arg)
+{
+	int	x;
+
+	x = 0;
+	while (arg[x])
+	{
+		free(arg[x]);
+		x++;
+	}
+	free(arg);
 }
 
 int	ft_atoi(const char *str)
@@ -79,6 +97,8 @@ int	main(int ac, char **av)
 	t_stack	*b;
 	char	**arg;
 
+	atexit(ft_leaks);
+	arg = NULL;
 	if (ac < 2)
 		return (0);
 	a = NULL;
@@ -90,6 +110,7 @@ int	main(int ac, char **av)
 		arg = ft_split(av[1], ' ');
 		ac = ft_split_len(arg);
 		ft_fill_stack(&a, ac, arg, 0);
+		ft_clean(arg);
 	}
 	else
 		ft_fill_stack(&a, ac, av, 1);
@@ -97,7 +118,6 @@ int	main(int ac, char **av)
 		ft_error();
 	ft_get_index(&a, ft_stack_size(a));
 	ft_sort(&a, &b, ft_stack_size(a));
-	ft_free_stack(&a);
-	ft_free_stack(&b);
+	ft_free_stack(&a, &b);
 	return (0);
 }
