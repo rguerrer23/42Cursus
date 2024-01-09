@@ -17,3 +17,9 @@ void	do_rrr(t_stack **stack_a, t_stack **stack_b)
 	do_rra(stack_a);
 	do_rrb(stack_b);
 }
+
+void	ft_error(void)
+{
+	write(2, "Error\n", 6);
+	exit(0);
+}

@@ -12,21 +12,16 @@
 
 #include "push_swap.h"
 
-int	ft_isdigit(int c)
-{
-	return (c >= '0' && c <= '9');
-}
-
 int	ft_isdigit_str(char *str, int i, long *num)
 {
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			return (0);
-		*num = *num * 10 + (str[i] - '0');
-		i++;
-	}
-	return (1);
+    while (str[i])
+    {
+        if (!(str[i] >= '0' && str[i] <= '9'))
+            return (0);
+        *num = *num * 10 + (str[i] - '0');
+        i++;
+    }
+    return (1);
 }
 
 int	ft_check_sign(char *str, int *i, int *sign)
@@ -63,29 +58,43 @@ int	ft_isint(char *str)
 	return (1);
 }
 
+int	ft_check_args_helper(int ac, char **arg, int should_clean)
+{
+    int		i;
+
+    i = 1;
+    if (should_clean == 1)
+        i = 0;
+    while (i < ac)
+    {
+        if (!ft_isint(arg[i]))
+        {
+            if (should_clean)
+                ft_clean(arg);
+            return (0);
+        }
+        i++;
+    }
+    if (should_clean)
+        ft_clean(arg);
+    return (1);
+}
+
 int	ft_check_args(int ac, char **av)
 {
-	int		i;
-	char	**arg;
+    char	**arg;
+    int		should_clean;
 
-	i = 1;
-	if (ac == 2)
-	{
-		arg = ft_split(av[1], ' ');
-		ac = ft_split_len(arg);
-		if (arg == NULL)
-			return (0);
-		i = 0;
-	}
-	else
-		arg = av;
-	while (i < ac)
-	{
-		if (!ft_isint(arg[i]))
-			return (0);
-		i++;
-	}
-	if (ac == 2)
-		ft_clean(arg);
-	return (1);
+    should_clean = 0;
+    if (ac == 2)
+    {
+        arg = ft_split(av[1], ' ');
+        if (arg == NULL)
+            return (0);
+        ac = ft_split_len(arg);
+        should_clean = 1;
+    }
+    else
+        arg = av;
+    return (ft_check_args_helper(ac, arg, should_clean));
 }
