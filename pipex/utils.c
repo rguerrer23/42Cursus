@@ -70,6 +70,7 @@ char	*get_cmd_path(char *cmd, char **env)
 		if (access(exec_path, X_OK | F_OK) == 0)
 		{
 			free(tmp);
+			ft_free_array(path_dirs);
 			return (exec_path);
 		}
 		free(exec_path);

@@ -69,5 +69,7 @@ int	main(int ac, char **av, char **env)
 		child_process(fd, cmd1, env, av[1]);
 	else
 		parent_process(fd, cmd2, env, av[4]);
+	ft_free_array(cmd1);
+	ft_free_array(cmd2);
 	return (0);
 }
