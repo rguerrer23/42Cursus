@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 12:34:25 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/04/20 12:19:07 by rguerrer         ###   ########.fr       */
+/*   Created: 2024/01/10 13:35:07 by rguerrer          #+#    #+#             */
+/*   Updated: 2024/01/10 13:35:07 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
-size_t	ft_strlen(const char *s)
-{
-	int	x;
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <sys/wait.h>
+# include <sys/types.h>
+# include "../libft/libft.h"
 
-	x = 0;
-	while (s[x] != '\0')
-	{
-		x++;
-	}
-	return (x);
-}
+# define BUFFER_SIZE 500
+
+int		main(int ac, char **av, char **env);
+void	ft_error(char *str);
+void	ft_free_array(char **array);
+char	*get_cmd_path(char *cmd, char **env);
+int		get_next_line(int fd, char **line);
+
+#endif

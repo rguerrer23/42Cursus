@@ -4,35 +4,34 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -I.
 
-SOURCES = pipex.c \
-			utils.c \
-			libft/ft_split.c \
-			libft/ft_putstr_fd.c \
-			libft/ft_strjoin.c \
-			libft/ft_strdup.c \
-			libft/ft_strncmp.c \
-			libft/ft_strlen.c \
+SOURCES = src/pipex.c \
+			src/utils.c \
+			libft/libft.a \
 
-INCLUDE = pipex.h
-
-OBJ = $(SOURCES:.c=.o)
+SOURCES_BONUS = src_bonus/pipex_bonus.c \
+				src_bonus/utils_bonus.c \
+				libft/libft.a \
 
 RM = rm -f
 
-all: $(NAME)
-
-$(NAME): $(OBJ) $(INCLUDE)
+$(NAME):
+	make all -C libft
 	$(CC) $(CFLAGS) $(SOURCES) -o $(NAME)
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $< -o $@
-
-clean:
-	$(RM) $(OBJ)
+all: $(NAME)
 
 fclean: clean
 	$(RM) $(NAME)
+	make fclean -C libft
+
+clean:
+	$(RM) $(OBJ)
+	make clean -C libft
 
 re: fclean all
 
-.PHONY: all clean fclean re
+bonus : clean
+	make all -C libft
+	$(CC) $(CFLAGS) $(SOURCES_BONUS) -o $(NAME)
+
+.PHONY: all clean fclean re bonus

@@ -21,6 +21,7 @@ void	child_process(int *fd, char **cmd, char **env, char *file)
 	if (fd2 == -1)
 		ft_error("-bash: infile: No such file or directory");
 	dup2(fd2, 0);
+	close(fd2);
 	dup2(fd[1], 1);
 	if (execve(get_cmd_path(cmd[0], env), cmd, env) == -1)
 	{
@@ -28,6 +29,7 @@ void	child_process(int *fd, char **cmd, char **env, char *file)
 		ft_free_array(cmd);
 		exit(0);
 	}
+	ft_free_array(cmd);
 }
 
 void	parent_process(int *fd, char **cmd, char **env, char *file)
@@ -39,6 +41,7 @@ void	parent_process(int *fd, char **cmd, char **env, char *file)
 	if (fd2 == -1)
 		ft_error("File error");
 	dup2(fd2, 1);
+	close(fd2);
 	dup2(fd[0], 0);
 	close(fd[0]);
 	if (execve(get_cmd_path(cmd[0], env), cmd, env) == -1)
@@ -47,6 +50,7 @@ void	parent_process(int *fd, char **cmd, char **env, char *file)
 		ft_free_array(cmd);
 		exit(0);
 	}
+	ft_free_array(cmd);
 }
 
 int	main(int ac, char **av, char **env)
