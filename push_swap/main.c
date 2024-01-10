@@ -12,11 +12,6 @@
 
 #include "push_swap.h"
 
-void	ft_leaks(void)
-{
-	system("leaks push_swap");
-}
-
 void	ft_clean(char **arg)
 {
 	int	x;
@@ -86,37 +81,36 @@ void	ft_fill_stack(t_stack **a, int ac, char **av, int i)
 
 int	ft_fill_choice(t_stack **a, int ac, char **av, char **arg)
 {
-    if (ac == 2)
-    {
-        arg = ft_split(av[1], ' ');
-        ac = ft_split_len(arg);
-        ft_fill_stack(a, ac, arg, 0);
-        ft_clean(arg);
-    }
-    else
-        ft_fill_stack(a, ac, av, 1);
-    return (ac);
+	if (ac == 2)
+	{
+		arg = ft_split(av[1], ' ');
+		ac = ft_split_len(arg);
+		ft_fill_stack(a, ac, arg, 0);
+		ft_clean(arg);
+	}
+	else
+		ft_fill_stack(a, ac, av, 1);
+	return (ac);
 }
 
 int	main(int ac, char **av)
 {
-    t_stack	*a;
-    t_stack	*b;
-    char	**arg;
+	t_stack	*a;
+	t_stack	*b;
+	char	**arg;
 
-    atexit(ft_leaks);
-    arg = NULL;
-    a = NULL;
-    b = NULL;
-    if (ac < 2)
-        return (0);
-    if (!ft_check_args(ac, av))
-        ft_error();
-    ac = ft_fill_choice(&a, ac, av, arg);
-    if (is_duplicate(a))
-        ft_error();
-    ft_get_index(&a, ft_stack_size(a));
-    ft_sort(&a, &b, ft_stack_size(a));
-    ft_free_stack(&a, &b);
-    return (0);
+	arg = NULL;
+	a = NULL;
+	b = NULL;
+	if (ac < 2)
+		return (0);
+	if (!ft_check_args(ac, av))
+		ft_error();
+	ac = ft_fill_choice(&a, ac, av, arg);
+	if (is_duplicate(a))
+		ft_error();
+	ft_get_index(&a, ft_stack_size(a));
+	ft_sort(&a, &b, ft_stack_size(a));
+	ft_free_stack(&a, &b);
+	return (0);
 }
