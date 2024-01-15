@@ -12,26 +12,33 @@ SOURCES_BONUS = src_bonus/pipex_bonus.c \
 				src_bonus/utils_bonus.c \
 				libft/libft.a \
 
+OBJ = $(SOURCES:.c=.o)
+OBJ_BONUS = $(SOURCES_BONUS:.c=.o)
+
 RM = rm -f
 
-$(NAME):
-	make all -C libft
-	$(CC) $(CFLAGS) $(SOURCES) -o $(NAME)
-
 all: $(NAME)
+
+$(NAME): libft/libft.a $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) libft/libft.a -o $(NAME)
+
+libft/libft.a:
+	make all -C libft
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	$(RM) $(OBJ) $(OBJ_BONUS)
+	make clean -C libft
 
 fclean: clean
 	$(RM) $(NAME)
 	make fclean -C libft
 
-clean:
-	$(RM) $(OBJ)
-	make clean -C libft
-
 re: fclean all
 
-bonus : clean
-	make all -C libft
-	$(CC) $(CFLAGS) $(SOURCES_BONUS) -o $(NAME)
+bonus : fclean libft/libft.a $(OBJ_BONUS)
+	$(CC) $(CFLAGS) $(OBJ_BONUS) libft/libft.a -o $(NAME)
 
 .PHONY: all clean fclean re bonus
