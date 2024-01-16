@@ -6,14 +6,10 @@ CFLAGS = -Wall -Wextra -Werror -I.
 
 SOURCES = src/pipex.c \
 			src/utils.c \
+			src/get_cmd_path.c \
 			libft/libft.a \
 
-SOURCES_BONUS = src_bonus/pipex_bonus.c \
-				src_bonus/utils_bonus.c \
-				libft/libft.a \
-
 OBJ = $(SOURCES:.c=.o)
-OBJ_BONUS = $(SOURCES_BONUS:.c=.o)
 
 RM = rm -f
 
@@ -29,7 +25,7 @@ libft/libft.a:
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ) $(OBJ_BONUS)
+	$(RM) $(OBJ)
 	make clean -C libft
 
 fclean: clean
@@ -37,8 +33,5 @@ fclean: clean
 	make fclean -C libft
 
 re: fclean all
-
-bonus : fclean libft/libft.a $(OBJ_BONUS)
-	$(CC) $(CFLAGS) $(OBJ_BONUS) libft/libft.a -o $(NAME)
 
 .PHONY: all clean fclean re bonus
