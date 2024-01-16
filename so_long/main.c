@@ -6,27 +6,32 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:48:29 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/11/30 16:48:29 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:32:35 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include <stdlib.h>
+#include "MLX42/include/MLX42/MLX42.h"
 
-int main(int argc, char **argv)
+static void ft_hook(void* param)
 {
-    t_game game;
+	const mlx_t* mlx = param;
 
-    if (argc != 2)
-    {
-        ft_putstr_fd("Error: wrong number of arguments\n", 2);
-        return (1);
-    }
-    if (!init_game(&game, argv[1]))
-    {
-        ft_putstr_fd("Error: could not initialize game\n", 2);
-        return (1);
-    }
-    run_game(&game);
-    end_game(&game);
-    return (0);	
+	//printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
+}
+
+int main(void)
+{
+	void *mlx_ptr;
+	void *win_ptr;
+ 
+	mlx_ptr = mlx_init(256, 256, "42Balls", true);
+	if (!mlx_ptr)
+		return (1);
+	win_ptr = mlx_new_image(mlx_ptr, 600, 400);
+	if (!win_ptr)
+		return (free(mlx_ptr), 1);
+	mlx_loop(mlx_ptr);
+	mlx_terminate(mlx_ptr);
+	return (EXIT_SUCCESS);
 }
