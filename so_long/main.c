@@ -6,32 +6,25 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:48:29 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/16 13:32:35 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/17 18:46:45 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "MLX42/include/MLX42/MLX42.h"
+#include "so_long.h"
 
-static void ft_hook(void* param)
+int	main(int ac, char **av)
 {
-	const mlx_t* mlx = param;
+	t_game	game;
 
-	//printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
-}
-
-int main(void)
-{
-	void *mlx_ptr;
-	void *win_ptr;
- 
-	mlx_ptr = mlx_init(256, 256, "42Balls", true);
-	if (!mlx_ptr)
-		return (1);
-	win_ptr = mlx_new_image(mlx_ptr, 600, 400);
-	if (!win_ptr)
-		return (free(mlx_ptr), 1);
-	mlx_loop(mlx_ptr);
-	mlx_terminate(mlx_ptr);
-	return (EXIT_SUCCESS);
+	if (ac != 2)
+		ft_error("Invalid number of arguments\n");
+	game.map = ft_read_map(av[1]);
+	if (!game.map)
+		return (0);
+	if (!ft_check_map(game.map))
+		return (ft_free_map(game.map), 0);
+	ft_size_map(game.map, &game);
+	if (!ft_init_game(&game))
+		return (ft_free_map(game.map), 0);
+	return (0);
 }

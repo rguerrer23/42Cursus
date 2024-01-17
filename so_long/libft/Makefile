@@ -8,8 +8,7 @@ SOURCES = ft_bzero.c \
 			ft_calloc.c \
 			ft_putstr_fd.c \
 			ft_strlen.c \
-			get_next_line.c \
-			get_next_line_utils.c 
+			ft_split.c \
 
 OBJ = $(SOURCES:.c=.o)
 

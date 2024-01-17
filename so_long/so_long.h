@@ -6,50 +6,34 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 11:10:32 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/12/02 11:10:32 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/17 18:51:22 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <unistd.h>
-# include <stdlib.h>
+# include "../libft/libft.h"
+# include "MLX42/include/MLX42/MLX42.h"
 # include <fcntl.h>
 # include <stdio.h>
-# include "../minilibx-linux/mlx.h"
-# include "../libft/libft.h"
-
-typedef struct s_img
-{
-	void	*player;
-	void	*wall;
-	void	*collectible;
-	void	*exit;
-	void	*floor;
-	int		width;
-	int		height;
-}				t_img;
-
-typedef struct s_map
-{
-	char	**grid;
-	int		width;
-	int		height;
-}				t_map;
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_game
 {
+	char	**map;
+	int		map_height;
+	int		map_width;
 	void	*mlx;
-	void	*win;
-	t_img	img;
-	t_map	map;
-}				t_game;
+}			t_game;
 
-int		init_images(t_game *game);
-void	run_game(t_game *game);
-void	end_game(t_game *game);
-int     main(int argc, char **argv);
-int 	init_game(t_game *game, char *map_path);
+int			main(int argc, char **argv);
+int			ft_check_map(char **map);
+char		**ft_read_map(char *script_map);
+void		ft_error(char *str);
+void		ft_free_map(char **map);
+void		ft_size_map(char **map, t_game *game);
+int			ft_init_game(t_game *game);
 
 #endif

@@ -4,32 +4,44 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-MLX42 = 
+LIBFT = ./libft
+LIBMLX = ./MLX42/build
 
-LIBFT = libft/libft.a
+HEADER = -I ./includes/ -I ${LIBMLX}/include -I ${LIBFT}
+LIBGL = -lglfw -L"/Users/rguerrer/.brew/opt/glfw/lib/"
+LIBS = ${LIBMLX}/libmlx42.a ${LIBFT}/libft.a
 
 SOURCES = main.c \
+			map.c \
+			check_map.c \
 			init_game.c \
-			init_images.c \
-			run_game.c \
-			end_game.c
+			utils.c \
 
 OBJ = $(SOURCES:.c=.o)
 
-ALL: $(NAME)
+ALL: libft libmlx $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(MLX) $(LIBFT) $(OBJ) -o $(NAME)
+libft:
+	@make -C $(LIBFT)
+
+libmlx:
+	@make -C $(LIBMLX)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I minilibx-linux/ -c $< -o $@
+	$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(HEADER) $(LIBS) $(OBJ) -o $(NAME) $(LIBGL)
 
 clean:
 	rm -f $(OBJ)
+	make clean -C $(LIBFT)
+	make clean -C $(LIBMLX)
 
 fclean: clean
 	rm -f $(NAME)
+	make fclean -C $(LIBFT)
 
 re: fclean ALL
 
-.PHONY: ALL clean fclean re	
+.PHONY: ALL clean fclean re libft libmlx
