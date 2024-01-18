@@ -71,30 +71,41 @@ char	**limpiar(char **ptr)
 	return (NULL);
 }
 
+char	**create_and_fill_array(char const *s, char c, char **ptr, int x)
+{
+	while (*s)
+	{
+		while (*s && *s == c)
+			s++;
+		if (*s == 39)
+		{
+			if (!(ptr[x] = substrig(++s, 39)) || !(s = ft_strchr(s, 39)))
+				return (limpiar(ptr));
+			x++, s++;
+		}
+		else if (*s && *s != c)
+		{
+			if (!(ptr[x] = substrig(s, c)))
+				return (limpiar(ptr));
+			while (*s && *s != c)
+                s++;
+            x++;
+        }
+    }
+    ptr[x] = NULL;
+    return (ptr);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**ptr;
 	int		x;
 
+	x = 0;
 	if (!s)
 		return (NULL);
 	ptr = malloc(sizeof(char *) * (lenp(s, c) + 1));
 	if (!ptr)
 		return (NULL);
-	x = 0;
-	while (*s)
-	{
-		while (*s && *s == c)
-			s++;
-		if (*s && *s != c)
-		{
-			ptr[x] = substrig(s, c);
-			if (!ptr[x++])
-				return (limpiar(ptr));
-			while (*s && *s != c)
-				s++;
-		}
-	}
-	ptr[x] = NULL;
-	return (ptr);
+	return (create_and_fill_array(s, c, ptr, x));
 }

@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 void	ft_putstr_fd(char *s, int fd);
 char	**ft_split(char const *s, char c);
