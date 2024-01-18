@@ -16,6 +16,7 @@ SOURCES = main.c \
 			check_map.c \
 			init_game.c \
 			utils.c \
+			images.c \
 
 OBJ = $(SOURCES:.c=.o)
 
