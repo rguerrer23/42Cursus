@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 10:58:14 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/16 12:36:03 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/18 13:59:49 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	parent_process(int *fd, char **cmd, char **env, char *file)
 	int		fd2;
 
 	close(fd[1]);
-	fd2 = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	fd2 = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	if (fd2 == -1)
 		ft_error("File error", NULL);
 	dup2(fd2, 1);
