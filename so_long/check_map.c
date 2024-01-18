@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 17:32:33 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/17 18:53:34 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/18 11:13:28 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,6 @@ int	ft_check_map(char **map)
 	if (!ft_chars(map))
 		return (ft_error("Map has invalid characters\n"), 0);
 	//if (!ft_way(map))
-		return (ft_error("Map has no way\n"), 0);
+	//	return (ft_error("Map has no way\n"), 0);
 	return(1);
 }

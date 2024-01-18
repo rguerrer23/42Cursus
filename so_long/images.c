@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   images.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 10:58:32 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/18 11:53:11 by rguerrer         ###   ########.fr       */
+/*   Created: 2024/01/18 11:30:16 by rguerrer          #+#    #+#             */
+/*   Updated: 2024/01/18 11:49:17 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "so_long.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include <sys/wait.h>
-# include <sys/types.h>
-# include "libft/libft.h"
-
-int		main(int ac, char **av, char **env);
-void	ft_error(char *str, char *arg);
-char	*get_cmd_path(char *cmd, char **env);
-void	ft_free_array(char **array);
-
-#endif
+void	ft_get_images(t_game *game)
+{
+	game->img = ft_calloc(1, sizeof(t_img));
+	game->img->img_wall = mlx_xpm_file_to_image(game->mlx, "./images/wall.xpm",
+			32, 32);
+	game->img->img_player = mlx_xpm_file_to_image(game->mlx, "./images/player.xpm",
+			32, 32);
+	
+}

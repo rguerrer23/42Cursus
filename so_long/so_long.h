@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 11:10:32 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/17 18:51:22 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/18 11:49:01 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,19 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+typedef struct s_img
+{
+	void	*img_wall;
+	void	*img_player;
+}			t_img;
+
 typedef struct s_game
 {
-	char	**map;
-	int		map_height;
-	int		map_width;
-	void	*mlx;
+	struct s_img	*img;
+	char			**map;
+	int				map_height;
+	int				map_width;
+	void			*mlx;
 }			t_game;
 
 int			main(int argc, char **argv);
