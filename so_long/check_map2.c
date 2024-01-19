@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 18:25:31 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/19 18:38:01 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/19 18:48:02 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	ft_start_pos(char **map, int *x, int *y)
 	int	j;
 
 	i = 0;
-	j = 0;
 	while (map[i])
 	{
+		j = 0;
 		while (map[i][j])
 		{
 			if (map[i][j] != '1')
@@ -86,14 +86,14 @@ int	ft_check(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] != '1' && map[i][j] != 'V')
-				return (1);
+			if (map[i][j] != '1' && map[i][j] != 'V' && map[i][j] != '0')
+				return (0);
 			j++;
 		}
 		i++;
 	}
 	ft_free_map(map);
-	return (0);
+	return (1);
 }
 
 int	ft_way(char **map)
