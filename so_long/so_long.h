@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 11:10:32 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/18 13:08:55 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/19 18:08:01 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# define BUFF_SIZE 5000
+
+typedef struct s_mlx
+{
+	void			*mlx;
+	int				player_x;
+	int				player_y;
+	int				collects;
+}			t_mlx;
 
 typedef struct s_img
 {
@@ -42,10 +52,11 @@ typedef struct s_game
 {
 	struct s_img	*img;
 	struct s_png	*png;
+	struct s_mlx	*mlx;
 	char			**map;
 	int				map_height;
 	int				map_width;
-	void			*mlx;
+	int				moves;
 }			t_game;
 
 int			main(int argc, char **argv);
@@ -58,5 +69,7 @@ int			ft_init_game(t_game *game);
 void		ft_get_images(t_game *game);
 void		ft_draw_map(t_game *game);
 void		ft_load_pngs(t_game *game);
+void		ft_key_hook(mlx_key_data_t keydata, void *pa);
+int			ft_check_extension(char *str, char *ext);
 
 #endif

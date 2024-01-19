@@ -6,10 +6,12 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 18:25:31 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/17 18:37:40 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/19 18:09:10 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 int	ft_way(char **map)
+{
+}

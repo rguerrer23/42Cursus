@@ -17,6 +17,7 @@ SOURCES = main.c \
 			init_game.c \
 			utils.c \
 			images.c \
+			key_hook.c \
 
 OBJ = $(SOURCES:.c=.o)
 

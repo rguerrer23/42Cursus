@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:48:29 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/18 11:15:35 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/19 18:06:46 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		ft_error("Invalid number of arguments\n");
+	if (!ft_check_extension(av[1], ".ber"))
+		ft_error("Invalid file extension\n");
 	game.map = ft_read_map(av[1]);
 	if (!game.map)
 		return (1);
