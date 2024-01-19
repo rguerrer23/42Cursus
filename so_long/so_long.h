@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 11:10:32 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/19 18:08:01 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/19 18:35:46 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ void		ft_draw_map(t_game *game);
 void		ft_load_pngs(t_game *game);
 void		ft_key_hook(mlx_key_data_t keydata, void *pa);
 int			ft_check_extension(char *str, char *ext);
+int			ft_way(char **map);
 
 #endif

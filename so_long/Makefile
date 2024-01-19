@@ -14,6 +14,7 @@ LIBS = ${LIBMLX}/libmlx42.a ${LIBFT}/libft.a
 SOURCES = main.c \
 			map.c \
 			check_map.c \
+			check_map2.c \
 			init_game.c \
 			utils.c \
 			images.c \
