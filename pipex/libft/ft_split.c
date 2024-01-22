@@ -83,6 +83,12 @@ char	**create_and_fill_array(char const *s, char c, char **ptr, int x)
 				return (limpiar(ptr));
 			x++, s++;
 		}
+		else if (*s == 34)
+		{
+			if (!(ptr[x] = substrig(++s, 34)) || !(s = ft_strchr(s, 34)))
+				return (limpiar(ptr));
+			x++, s++;
+		}
 		else if (*s && *s != c)
 		{
 			if (!(ptr[x] = substrig(s, c)))
