@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:46:10 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/19 18:18:08 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/23 12:27:53 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,7 @@ void	ft_key_hook(mlx_key_data_t keydata, void *pa)
 		ft_move_left(game);
 	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_RELEASE)
 		ft_move_right(game);
+	if(game->mlx->collects == 0 && game->map[game->mlx->player_y][game->mlx->player_x] == 'E')
+		ft_close_game(game);
+	ft_collects(game);
 }

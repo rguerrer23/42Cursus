@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:49:09 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/19 18:07:15 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/23 11:49:09 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,16 @@ void	ft_draw_map(t_game *game)
 			{
 				game->mlx->player_x = x;
 				game->mlx->player_y = y;
+				mlx_image_to_window(game->mlx->mlx, game->img->img_floor, x * 32, y *32);
 				mlx_image_to_window(game->mlx->mlx, game->img->img_player, x * 32, y * 32);
 			}
 			else if (game->map[y][x] == 'E')
 				mlx_image_to_window(game->mlx->mlx, game->img->img_exit, x * 32, y * 32);
 			else if (game->map[y][x] == 'C')
+			{
+				mlx_image_to_window(game->mlx->mlx, game->img->img_floor, x * 32, y *32);
 				mlx_image_to_window(game->mlx->mlx, game->img->img_collect, x * 32, y * 32);
+			}
 			else
 				mlx_image_to_window(game->mlx->mlx, game->img->img_floor, x * 32, y * 32);
 			x++;
