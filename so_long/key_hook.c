@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:46:10 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/23 12:27:53 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/23 13:29:30 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	ft_move_up(t_game *game)
 	{
 		if (game->map[game->mlx->player_y - 1][game->mlx->player_x] == 'C')
 			game->mlx->collects--;
+		if (game->map[game->mlx->player_y - 1][game->mlx->player_x] == 'E' && game->mlx->collects == 0)
+			ft_close_game(game);
 		game->map[game->mlx->player_y][game->mlx->player_x] = '0';
 		game->mlx->player_y--;
 		game->map[game->mlx->player_y][game->mlx->player_x] = 'P';
@@ -40,6 +42,8 @@ void	ft_move_down(t_game *game)
 	{
 		if (game->map[game->mlx->player_y + 1][game->mlx->player_x] == 'C')
 			game->mlx->collects--;
+		if (game->map[game->mlx->player_y + 1][game->mlx->player_x] == 'E' && game->mlx->collects == 0)
+			ft_close_game(game);
 		game->map[game->mlx->player_y][game->mlx->player_x] = '0';
 		game->mlx->player_y++;
 		game->map[game->mlx->player_y][game->mlx->player_x] = 'P';
@@ -55,6 +59,8 @@ void	ft_move_left(t_game *game)
 	{
 		if (game->map[game->mlx->player_y][game->mlx->player_x - 1] == 'C')
 			game->mlx->collects--;
+		if (game->map[game->mlx->player_y][game->mlx->player_x - 1] == 'E' && game->mlx->collects == 0)
+			ft_close_game(game);
 		game->map[game->mlx->player_y][game->mlx->player_x] = '0';
 		game->mlx->player_x--;
 		game->map[game->mlx->player_y][game->mlx->player_x] = 'P';
@@ -70,6 +76,8 @@ void	ft_move_right(t_game *game)
 	{
 		if (game->map[game->mlx->player_y][game->mlx->player_x + 1] == 'C')
 			game->mlx->collects--;
+		if (game->map[game->mlx->player_y][game->mlx->player_x + 1] == 'E' && game->mlx->collects == 0)
+			ft_close_game(game);
 		game->map[game->mlx->player_y][game->mlx->player_x] = '0';
 		game->mlx->player_x++;
 		game->map[game->mlx->player_y][game->mlx->player_x] = 'P';
@@ -96,5 +104,5 @@ void	ft_key_hook(mlx_key_data_t keydata, void *pa)
 		ft_move_right(game);
 	if(game->mlx->collects == 0 && game->map[game->mlx->player_y][game->mlx->player_x] == 'E')
 		ft_close_game(game);
-	ft_collects(game);
+	//ft_collects(game);
 }
