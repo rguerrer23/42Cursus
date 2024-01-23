@@ -6,7 +6,7 @@ CFLAGS = -Wall -Werror -Wextra
 
 LIB = ar rcs
 
-SOURCES = ft_putstr_fd.c ft_split.c ft_strjoin.c ft_strdup.c ft_strncmp.c ft_strlen.c ft_strchr.c
+SOURCES = ft_putstr_fd.c ft_split.c ft_strjoin.c ft_strdup.c ft_strncmp.c ft_strlen.c ft_strchr.c ft_split2.c
 
 OBJ = $(SOURCES:.c=.o)
 

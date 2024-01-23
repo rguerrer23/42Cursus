@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 10:41:20 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/18 14:07:01 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/23 11:26:46 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,27 +79,25 @@ char	**create_and_fill_array(char const *s, char c, char **ptr, int x)
 			s++;
 		if (*s == 39)
 		{
-			if (!(ptr[x] = substrig(++s, 39)) || !(s = ft_strchr(s, 39)))
-				return (limpiar(ptr));
-			x++, s++;
+			ptr = handle_single_quote(&s, ptr, &x);
+			if (!ptr)
+				return (NULL);
 		}
 		else if (*s == 34)
 		{
-			if (!(ptr[x] = substrig(++s, 34)) || !(s = ft_strchr(s, 34)))
-				return (limpiar(ptr));
-			x++, s++;
+			ptr = handle_double_quote(&s, ptr, &x);
+			if (!ptr)
+				return (NULL);
 		}
 		else if (*s && *s != c)
 		{
-			if (!(ptr[x] = substrig(s, c)))
-				return (limpiar(ptr));
-			while (*s && *s != c)
-                s++;
-            x++;
-        }
-    }
-    ptr[x] = NULL;
-    return (ptr);
+			ptr = handle_other_char(&s, c, ptr, &x);
+			if (!ptr)
+				return (NULL);
+		}
+	}
+	ptr[x] = NULL;
+	return (ptr);
 }
 
 char	**ft_split(char const *s, char c)
