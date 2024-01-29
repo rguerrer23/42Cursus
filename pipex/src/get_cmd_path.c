@@ -70,8 +70,16 @@ char	*get_cmd_path(char *cmd, char **env)
 	char	**path_dirs;
 	char	*exec_path;
 	char	*tmp;
+	char	*path_env;
 
-	path_dirs = ft_split(get_env_var("PATH", env), ':');
+	path_env = get_env_var("PATH", env);
+	if (!path_env)
+	{
+		free(path_env);
+		ft_error("zsh: command not found: ", cmd);
+	}
+	path_dirs = ft_split(path_env, ':');
+	free(path_env);
 	tmp = ft_strdup(cmd);
 	exec_path = check_access(path_dirs, tmp);
 	if (!exec_path)
