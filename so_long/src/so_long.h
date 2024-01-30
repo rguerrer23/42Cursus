@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 11:10:32 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/30 13:19:21 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:26:10 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ int					ft_way(char **map);
 void				ft_collects(t_game *game);
 void				ft_print_moves(t_game *game);
 int					ft_objects(char **map);
+void				ft_close_game(t_game *game);
 
 #endif

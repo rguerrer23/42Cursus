@@ -6,18 +6,11 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:46:10 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/30 13:06:30 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:26:20 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	ft_close_game(t_game *game)
-{
-	mlx_terminate(game->mlx->mlx);
-	ft_free_map(game->map);
-	exit(0);
-}
 
 void	ft_move_up(t_game *game)
 {

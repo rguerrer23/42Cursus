@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 18:40:32 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/30 13:22:15 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:26:04 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,11 @@ void	ft_print_moves(t_game *game)
 	ft_putstr_fd("Moves: ", 1);
 	ft_putnbr_fd(game->moves, 1);
 	ft_putchar_fd('\n', 1);
+}
+
+void	ft_close_game(t_game *game)
+{
+	mlx_terminate(game->mlx->mlx);
+	ft_free_map(game->map);
+	exit(0);
 }
