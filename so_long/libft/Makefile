@@ -9,6 +9,8 @@ SOURCES = ft_bzero.c \
 			ft_putstr_fd.c \
 			ft_strlen.c \
 			ft_split.c \
+			ft_putchar_fd.c \
+			ft_putnbr_fd.c \
 
 OBJ = $(SOURCES:.c=.o)
 

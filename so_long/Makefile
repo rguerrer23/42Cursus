@@ -11,14 +11,16 @@ HEADER = -I ./includes/ -I ${LIBMLX}/include -I ${LIBFT}
 LIBGL = -lglfw -L"/Users/rguerrer/.brew/opt/glfw/lib/"
 LIBS = ${LIBMLX}/libmlx42.a ${LIBFT}/libft.a
 
-SOURCES = main.c \
-			map.c \
-			check_map.c \
-			check_map2.c \
-			init_game.c \
-			utils.c \
-			images.c \
-			key_hook.c \
+SOURCES = src/main.c \
+			src/map.c \
+			src/check_map.c \
+			src/check_way.c \
+			src/check_objects.c \
+			src/init_game.c \
+			src/utils.c \
+			src/images.c \
+			src/key_hook.c \
+			src/collects.c \
 
 OBJ = $(SOURCES:.c=.o)
 

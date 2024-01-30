@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 17:32:33 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/19 18:35:09 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:10:54 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,38 +60,6 @@ int	ft_walls(char **map)
 	return (1);
 }
 
-int	ft_objects(char **map)
-{
-	int	x;
-	int	y;
-	int	collectibles;
-	int	exits;
-	int	player;
-
-	y = 0;
-	collectibles = 0;
-	exits = 0;
-	player = 0;
-	while (map[y] != NULL)
-	{
-		x = 0;
-		while (map[y][x] != '\0')
-		{
-			if (map[y][x] == 'C')
-				collectibles++;
-			if (map[y][x] == 'E')
-				exits++;
-			if (map[y][x] == 'P')
-				player++;
-			x++;
-		}
-		y++;
-	}
-	if (collectibles <= 0 || exits != 1 || player != 1)
-		return (0);
-	return (1);
-}
-
 int	ft_chars(char **map)
 {
 	int	x;
@@ -125,5 +93,5 @@ int	ft_check_map(char **map)
 		return (ft_error("Map has invalid characters\n"), 0);
 	if (!ft_way(map))
 		return (ft_error("Map has no way\n"), 0);
-	return(1);
+	return (1);
 }

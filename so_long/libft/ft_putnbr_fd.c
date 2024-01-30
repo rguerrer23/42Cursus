@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collects.c                                         :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/23 11:59:01 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/23 12:27:28 by rguerrer         ###   ########.fr       */
+/*   Created: 2023/04/28 10:19:26 by rguerrer          #+#    #+#             */
+/*   Updated: 2023/04/28 10:19:26 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long"
+#include "libft.h"
 
-void	ft_collects(t_game *game)
-{}
+void	ft_putnbr_fd(int n, int fd)
+{
+	long int	nb;
+
+	nb = n;
+	if (nb < 0)
+	{
+		ft_putchar_fd('-', fd);
+		nb = -nb;
+	}
+	if (nb > 9)
+		ft_putnbr_fd(nb / 10, fd);
+	ft_putchar_fd((nb % 10) + '0', fd);
+}
