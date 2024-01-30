@@ -21,6 +21,7 @@ SOURCES = src/main.c \
 			src/images.c \
 			src/key_hook.c \
 			src/collects.c \
+			src/move.c \
 
 OBJ = $(SOURCES:.c=.o)
 

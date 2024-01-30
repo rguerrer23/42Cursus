@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:46:10 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/30 13:26:20 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:06:50 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,145 +14,73 @@
 
 void	ft_move_up(t_game *game)
 {
-	if (game->map[game->mlx->player_y - 1][game->mlx->player_x] != '1')
+	int	new_y;
+	int	new_x;
+	int	exit;
+
+	exit = 0;
+	new_y = game->mlx->player_y - 1;
+	new_x = game->mlx->player_x;
+	if (game->map[new_y][new_x] != '1')
 	{
-		if (game->map[game->mlx->player_y - 1][game->mlx->player_x] == 'C')
-			game->mlx->collects--;
-		if (game->map[game->mlx->player_y - 1][game->mlx->player_x] == 'E')
-		{
-			if (game->mlx->collects == 0)
-			{
-				ft_putstr_fd("You win!\n", 1);
-				ft_close_game(game);
-			}
-			else
-			{
-				ft_putstr_fd("You need to collect all the coins!\n", 1);
-				game->map[game->mlx->player_y][game->mlx->player_x] = '0';
-				game->mlx->player_y--;
-				game->map[game->mlx->player_y][game->mlx->player_x] = 'X';
-				game->moves++;
-				ft_draw_map(game);
-				game->map[game->mlx->player_y][game->mlx->player_x] = 'E';
-				ft_print_moves(game);
-				return ;
-			}
-		}
-		if (game->map[game->mlx->player_y][game->mlx->player_x] != 'E')
-			game->map[game->mlx->player_y][game->mlx->player_x] = '0';
-		game->mlx->player_y--;
-		game->map[game->mlx->player_y][game->mlx->player_x] = 'P';
-		game->moves++;
-		ft_draw_map(game);
-		ft_print_moves(game);
+		handle_collectible(game, new_y, new_x);
+		exit = handle_exit(game, new_y, new_x);
+		if (exit == 0)
+			move_player(game, new_y, new_x);
 	}
 }
 
 void	ft_move_down(t_game *game)
 {
-	if (game->map[game->mlx->player_y + 1][game->mlx->player_x] != '1')
+	int	new_y;
+	int	new_x;
+	int	exit;
+
+	exit = 0;
+	new_y = game->mlx->player_y + 1;
+	new_x = game->mlx->player_x;
+	if (game->map[new_y][new_x] != '1')
 	{
-		if (game->map[game->mlx->player_y + 1][game->mlx->player_x] == 'C')
-			game->mlx->collects--;
-		if (game->map[game->mlx->player_y + 1][game->mlx->player_x] == 'E')
-		{
-			if (game->mlx->collects == 0)
-			{
-				ft_putstr_fd("You win!\n", 1);
-				ft_close_game(game);
-			}
-			else
-			{
-				ft_putstr_fd("You need to collect all the coins!\n", 1);
-				game->map[game->mlx->player_y][game->mlx->player_x] = '0';
-				game->mlx->player_y++;
-				game->map[game->mlx->player_y][game->mlx->player_x] = 'X';
-				game->moves++;
-				ft_draw_map(game);
-				game->map[game->mlx->player_y][game->mlx->player_x] = 'E';
-				ft_print_moves(game);
-				return ;
-			}
-		}
-		if (game->map[game->mlx->player_y][game->mlx->player_x] != 'E')
-			game->map[game->mlx->player_y][game->mlx->player_x] = '0';
-		game->mlx->player_y++;
-		game->map[game->mlx->player_y][game->mlx->player_x] = 'P';
-		game->moves++;
-		ft_draw_map(game);
-		ft_print_moves(game);
+		handle_collectible(game, new_y, new_x);
+		exit = handle_exit(game, new_y, new_x);
+		if (exit == 0)
+			move_player(game, new_y, new_x);
 	}
 }
 
 void	ft_move_left(t_game *game)
 {
-	if (game->map[game->mlx->player_y][game->mlx->player_x - 1] != '1')
+	int	new_y;
+	int	new_x;
+	int	exit;
+
+	exit = 0;
+	new_y = game->mlx->player_y;
+	new_x = game->mlx->player_x - 1;
+	if (game->map[new_y][new_x] != '1')
 	{
-		if (game->map[game->mlx->player_y][game->mlx->player_x - 1] == 'C')
-			game->mlx->collects--;
-		if (game->map[game->mlx->player_y][game->mlx->player_x - 1] == 'E')
-		{
-			if (game->mlx->collects == 0)
-			{
-				ft_putstr_fd("You win!\n", 1);
-				ft_close_game(game);
-			}
-			else
-			{
-				ft_putstr_fd("You need to collect all the coins!\n", 1);
-				game->map[game->mlx->player_y][game->mlx->player_x] = '0';
-				game->mlx->player_x--;
-				game->map[game->mlx->player_y][game->mlx->player_x] = 'X';
-				game->moves++;
-				ft_draw_map(game);
-				game->map[game->mlx->player_y][game->mlx->player_x] = 'E';
-				ft_print_moves(game);
-				return ;
-			}
-		}
-		if (game->map[game->mlx->player_y][game->mlx->player_x] != 'E')
-			game->map[game->mlx->player_y][game->mlx->player_x] = '0';
-		game->mlx->player_x--;
-		game->map[game->mlx->player_y][game->mlx->player_x] = 'P';
-		game->moves++;
-		ft_draw_map(game);
-		ft_print_moves(game);
+		handle_collectible(game, new_y, new_x);
+		exit = handle_exit(game, new_y, new_x);
+		if (exit == 0)
+			move_player(game, new_y, new_x);
 	}
 }
 
 void	ft_move_right(t_game *game)
 {
-	if (game->map[game->mlx->player_y][game->mlx->player_x + 1] != '1')
+	int	new_y;
+	int	new_x;
+	int	exit;
+
+	exit = 0;
+	new_y = game->mlx->player_y;
+	new_x = game->mlx->player_x + 1;
+	if (game->map[new_y][new_x] != '1')
 	{
-		if (game->map[game->mlx->player_y][game->mlx->player_x + 1] == 'C')
-			game->mlx->collects--;
-		if (game->map[game->mlx->player_y][game->mlx->player_x + 1] == 'E')
-		{
-			if (game->mlx->collects == 0)
-			{
-				ft_putstr_fd("You win!\n", 1);
-				ft_close_game(game);
-			}
-			else
-			{
-				ft_putstr_fd("You need to collect all the coins!\n", 1);
-				game->map[game->mlx->player_y][game->mlx->player_x] = '0';
-				game->mlx->player_x++;
-				game->map[game->mlx->player_y][game->mlx->player_x] = 'X';
-				game->moves++;
-				ft_draw_map(game);
-				game->map[game->mlx->player_y][game->mlx->player_x] = 'E';
-				ft_print_moves(game);
-				return ;
-			}
-		}
-		if (game->map[game->mlx->player_y][game->mlx->player_x] != 'E')
-			game->map[game->mlx->player_y][game->mlx->player_x] = '0';
-		game->mlx->player_x++;
-		game->map[game->mlx->player_y][game->mlx->player_x] = 'P';
-		game->moves++;
-		ft_draw_map(game);
-		ft_print_moves(game);
+		handle_collectible(game, new_y, new_x);
+		exit = handle_exit(game, new_y, new_x);
+		if (exit == 0)
+			move_player(game, new_y, new_x);
 	}
 }
 
