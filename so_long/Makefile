@@ -25,28 +25,43 @@ SOURCES = src/main.c \
 
 OBJ = $(SOURCES:.c=.o)
 
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+NO_COLOR = \033[0m
+
 ALL: libft libmlx $(NAME)
 
 libft:
-	@make -C $(LIBFT)
+	@echo "$(YELLOW)Compiling libft...$(NO_COLOR)"
+	@make -C $(LIBFT) > /dev/null
+	@echo "$(GREEN)Compilation of libft done.$(NO_COLOR)"
 
 libmlx:
-	@make -C $(LIBMLX)
+	@echo "$(YELLOW)Compiling libmlx...$(NO_COLOR)"
+	@make -C $(LIBMLX) > /dev/null
+	@echo "$(GREEN)Compilation of libmlx done.$(NO_COLOR)"
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+	@echo "$(YELLOW)Compiling $<...$(NO_COLOR)"
+	@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@ > /dev/null
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(HEADER) $(LIBS) $(OBJ) -o $(NAME) $(LIBGL)
+$(NAME): $(OBJ) $(LIBS)
+	@echo "$(YELLOW)Compiling $(NAME)...$(NO_COLOR)"
+	@$(CC) $(CFLAGS) $(HEADER) $(LIBS) $(OBJ) -o $(NAME) $(LIBGL) > /dev/null
+	@echo "$(GREEN)Compilation of $(NAME) done.$(NO_COLOR)"
 
 clean:
-	rm -f $(OBJ)
-	make clean -C $(LIBFT)
-	make clean -C $(LIBMLX)
+	@echo "$(YELLOW)Cleaning objects...$(NO_COLOR)"
+	@rm -f $(OBJ) > /dev/null
+	@make clean -C $(LIBFT) > /dev/null
+	@make clean -C $(LIBMLX) > /dev/null
+	@echo "$(GREEN)Cleaning done.$(NO_COLOR)"
 
 fclean: clean
-	rm -f $(NAME)
-	make fclean -C $(LIBFT)
+	@echo "$(YELLOW)Cleaning executable...$(NO_COLOR)"
+	@rm -f $(NAME) > /dev/null
+	@make fclean -C $(LIBFT) > /dev/null
+	@echo "$(GREEN)Cleaning done.$(NO_COLOR)"
 
 re: fclean ALL
 

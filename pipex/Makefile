@@ -2,36 +2,52 @@ NAME = pipex
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror
+
+INCLUDES = -I.
 
 SOURCES = src/pipex.c \
 			src/utils.c \
 			src/get_cmd_path.c \
-			libft/libft.a \
+
+LIBS = libft/libft.a
 
 OBJ = $(SOURCES:.c=.o)
 
 RM = rm -f
 
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+NO_COLOR = \033[0m
+
 all: $(NAME)
 
-$(NAME): libft/libft.a $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) libft/libft.a -o $(NAME)
+$(NAME): $(OBJ) $(LIBS)
+	@echo "$(YELLOW)Compiling $(NAME)...$(NO_COLOR)"
+	@$(CC) $(CFLAGS)  $(INCLUDES) $(OBJ) $(LIBS) -o $(NAME) > /dev/null
+	@echo "$(GREEN)Compilation of $(NAME) done.$(NO_COLOR)"
 
 libft/libft.a:
-	make all -C libft
+	@echo "$(YELLOW)Compiling libft...$(NO_COLOR)"
+	@make -s all -C libft > /dev/null
+	@echo "$(GREEN)Compilation of libft done.$(NO_COLOR)"
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@echo "$(YELLOW)Compiling $<...$(NO_COLOR)"
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ > /dev/null
 
 clean:
-	$(RM) $(OBJ)
-	make clean -C libft
+	@echo "$(YELLOW)Cleaning objects...$(NO_COLOR)"
+	@$(RM) $(OBJ) > /dev/null
+	@make clean -C libft > /dev/null
+	@echo "$(GREEN)Cleaning done.$(NO_COLOR)"
 
 fclean: clean
-	$(RM) $(NAME)
-	make fclean -C libft
+	@echo "$(YELLOW)Cleaning executable...$(NO_COLOR)"
+	@$(RM) $(NAME) > /dev/null
+	@make fclean -C libft > /dev/null
+	@echo "$(GREEN)Cleaning done.$(NO_COLOR)"
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
