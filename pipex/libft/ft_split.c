@@ -46,7 +46,10 @@ char	*substrig(char const *s, char c)
 		x++;
 	str = malloc(sizeof(char) * (x + 1));
 	if (!str)
+	{
+		free(str);
 		return (NULL);
+	}
 	x = 0;
 	while (s[x] && s[x] != c)
 	{
@@ -110,6 +113,9 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	ptr = malloc(sizeof(char *) * (lenp(s, c) + 1));
 	if (!ptr)
+	{
+		free(ptr);
 		return (NULL);
+	}
 	return (create_and_fill_array(s, c, ptr, x));
 }
