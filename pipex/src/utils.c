@@ -18,7 +18,6 @@ void	ft_error(char *str, char *arg)
 	if (arg)
 		ft_putstr_fd(arg, 2);
 	ft_putstr_fd("\n", 2);
-	exit(1);
 }
 
 void	ft_free_array(char **array)

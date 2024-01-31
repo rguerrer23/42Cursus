@@ -79,10 +79,9 @@ char	*get_cmd_path(char *cmd, char **env)
 	exec_path = check_access(path_dirs, tmp);
 	if (!exec_path)
 	{
-		free(tmp);
 		ft_free_array(path_dirs);
 		ft_error("zsh: command not found: ", cmd);
-		return (cmd);
+		return (tmp);
 	}
 	free(tmp);
 	return (exec_path);
