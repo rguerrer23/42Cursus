@@ -25,8 +25,8 @@ void	child_process(int *fd, char **cmd, char **env, char *file)
 	dup2(fd[1], 1);
 	if (execve(get_cmd_path(cmd[0], env), cmd, env) == -1)
 	{
-		ft_error("Command error", NULL);
 		ft_free_array(cmd);
+		ft_error("Command error", NULL);
 		exit(0);
 	}
 	ft_free_array(cmd);
@@ -46,8 +46,8 @@ void	parent_process(int *fd, char **cmd, char **env, char *file)
 	close(fd[0]);
 	if (execve(get_cmd_path(cmd[0], env), cmd, env) == -1)
 	{
-		ft_error("Command error", NULL);
 		ft_free_array(cmd);
+		ft_error("Command error", NULL);
 		exit(0);
 	}
 	ft_free_array(cmd);
@@ -72,7 +72,10 @@ int	main(int ac, char **av, char **env)
 	if (!pid)
 		child_process(fd, cmd1, env, av[1]);
 	else
+	{
 		parent_process(fd, cmd2, env, av[4]);
+		waitpid(pid, NULL, 0);
+	}
 	ft_free_array(cmd1);
 	ft_free_array(cmd2);
 	return (0);
