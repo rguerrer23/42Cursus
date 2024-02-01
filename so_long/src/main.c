@@ -6,22 +6,16 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:48:29 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/02/01 11:54:32 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:39:43 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_leaks(void)
-{
-	system("leaks so_long");
-}
-
 int	main(int ac, char **av)
 {
 	t_game	game;
 
-	atexit(ft_leaks);
 	if (ac != 2)
 		ft_error("Invalid number of arguments\n");
 	if (!ft_check_extension(av[1], ".ber"))
