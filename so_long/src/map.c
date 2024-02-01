@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:49:09 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/02/01 12:06:07 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:10:43 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ char	**ft_read_map(char *script_map)
 	{
 		free(tmp_map);
 		close(fd);
-		return (0);
+		ft_error("Error reading file\n");
 	}
 	map = ft_split(tmp_map, '\n');
 	free(tmp_map);
