@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 16:49:09 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/02/01 12:10:43 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:59:12 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,37 +47,15 @@ void	ft_draw_map(t_game *game)
 		while (game->map[y][x])
 		{
 			if (game->map[y][x] == '1')
-				mlx_image_to_window(game->mlx->mlx, game->img->img_wall, x * 32,
-					y * 32);
+				draw_wall(game, x, y);
 			else if (game->map[y][x] == 'P')
-			{
-				game->mlx->player_x = x;
-				game->mlx->player_y = y;
-				mlx_image_to_window(game->mlx->mlx, game->img->img_floor, x
-					* 32, y * 32);
-				mlx_image_to_window(game->mlx->mlx, game->img->img_player, x
-					* 32, y * 32);
-			}
-			else if (game->map[y][x] == 'X')
-			{
-				mlx_image_to_window(game->mlx->mlx, game->img->img_exit, x * 32,
-					y * 32);
-				mlx_image_to_window(game->mlx->mlx, game->img->img_player, x
-					* 32, y * 32);
-			}
-			else if (game->map[y][x] == 'E')
-				mlx_image_to_window(game->mlx->mlx, game->img->img_exit, x * 32,
-					y * 32);
+				draw_player(game, x, y);
+			else if (game->map[y][x] == 'X' || game->map[y][x] == 'E')
+				draw_exit(game, x, y);
 			else if (game->map[y][x] == 'C')
-			{
-				mlx_image_to_window(game->mlx->mlx, game->img->img_floor, x
-					* 32, y * 32);
-				mlx_image_to_window(game->mlx->mlx, game->img->img_collect, x
-					* 32, y * 32);
-			}
+				draw_collect(game, x, y);
 			else
-				mlx_image_to_window(game->mlx->mlx, game->img->img_floor, x
-					* 32, y * 32);
+				draw_floor(game, x, y);
 			x++;
 		}
 		y++;

@@ -22,6 +22,7 @@ SOURCES = src/main.c \
 			src/key_hook.c \
 			src/collects.c \
 			src/move.c \
+			src/draw_map.c \
 
 OBJ = $(SOURCES:.c=.o)
 
@@ -37,9 +38,9 @@ libft:
 	@echo "$(GREEN)Compilation of libft done.$(NO_COLOR)"
 
 libmlx:
-	@echo "$(YELLOW)Compiling libmlx...$(NO_COLOR)"
+	@echo "$(YELLOW)Compiling MLX42...$(NO_COLOR)"
 	@make -C $(LIBMLX) > /dev/null
-	@echo "$(GREEN)Compilation of libmlx done.$(NO_COLOR)"
+	@echo "$(GREEN)Compilation of MLX42 done.$(NO_COLOR)"
 
 %.o: %.c
 	@echo "$(YELLOW)Compiling $<...$(NO_COLOR)"

@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 11:10:32 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/30 14:02:31 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:52:23 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,10 @@ void				ft_close_game(t_game *game);
 void				move_player(t_game *game, int y, int x);
 void				handle_collectible(t_game *game, int y, int x);
 int					handle_exit(t_game *game, int y, int x);
+void				draw_floor(t_game *game, int x, int y);
+void				draw_collect(t_game *game, int x, int y);
+void				draw_exit(t_game *game, int x, int y);
+void				draw_player(t_game *game, int x, int y);
+void				draw_wall(t_game *game, int x, int y);
 
 #endif
