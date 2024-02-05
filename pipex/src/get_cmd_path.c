@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 12:31:52 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/16 12:35:17 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/02/01 11:06:43 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ char	*get_cmd_path(char *cmd, char **env)
 	char	*path_env;
 
 	path_env = get_env_var("PATH", env);
+	if (!path_env)
+		path_env = ft_strdup ("/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin");
 	path_dirs = ft_split(path_env, ':');
 	free(path_env);
 	tmp = ft_strdup(cmd);

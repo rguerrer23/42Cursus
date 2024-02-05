@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 18:25:31 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/30 13:13:35 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:02:16 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,15 @@ int	ft_way(char **map)
 	char	**tmpmap;
 	int		x;
 	int		y;
+	int		result;
 
 	y = 0;
 	x = 0;
 	tmpmap = ft_copy_map(map);
 	ft_start_pos(tmpmap, &x, &y);
 	dfs(tmpmap, x, y);
-	return (ft_check(tmpmap));
+	result = ft_check(tmpmap);
+	if (result == 0)
+		ft_free_map(tmpmap);
+	return (result);
 }
