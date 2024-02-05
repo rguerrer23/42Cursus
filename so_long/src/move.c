@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:46:23 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/01/30 14:04:00 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:20:21 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	handle_exit(t_game *game, int y, int x)
 		}
 		else
 		{
-			ft_putstr_fd("You need to collect all the coins!\n", 1);
+			ft_putstr_fd("You need to collect all the mushrooms!\n", 1);
 			game->map[game->mlx->player_y][game->mlx->player_x] = '0';
 			game->mlx->player_y = y;
 			game->mlx->player_x = x;
