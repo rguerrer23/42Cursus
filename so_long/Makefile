@@ -2,14 +2,14 @@ NAME = so_long
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast
 
 LIBFT = ./libft
-LIBMLX = ./MLX42/build
+LIBMLX = ./MLX42
 
-HEADER = -I ./includes/ -I ${LIBMLX}/include -I ${LIBFT}
+HEADER = -I ./include -I ${LIBMLX}/include -I ${LIBFT}
 LIBGL = -lglfw -L"/Users/rguerrer/.brew/opt/glfw/lib/"
-LIBS = ${LIBMLX}/libmlx42.a ${LIBFT}/libft.a
+LIBS = ${LIBMLX}/build/libmlx42.a ${LIBFT}/libft.a
 
 SOURCES = src/main.c \
 			src/map.c \
@@ -39,7 +39,7 @@ libft:
 
 libmlx:
 	@echo "$(YELLOW)Compiling MLX42...$(NO_COLOR)"
-	@make -C $(LIBMLX) > /dev/null
+	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4 > /dev/null
 	@echo "$(GREEN)Compilation of MLX42 done.$(NO_COLOR)"
 
 %.o: %.c
@@ -55,7 +55,7 @@ clean:
 	@echo "$(YELLOW)Cleaning objects...$(NO_COLOR)"
 	@rm -f $(OBJ) > /dev/null
 	@make clean -C $(LIBFT) > /dev/null
-	@make clean -C $(LIBMLX) > /dev/null
+	@rm -rf $(LIBMLX)/build > /dev/null
 	@echo "$(GREEN)Cleaning done.$(NO_COLOR)"
 
 fclean: clean
@@ -64,6 +64,6 @@ fclean: clean
 	@make fclean -C $(LIBFT) > /dev/null
 	@echo "$(GREEN)Cleaning done.$(NO_COLOR)"
 
-re: fclean ALL
+re: clean ALL
 
 .PHONY: ALL clean fclean re libft libmlx
