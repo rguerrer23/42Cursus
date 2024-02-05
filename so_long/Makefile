@@ -39,7 +39,7 @@ libft:
 
 libmlx:
 	@echo "$(YELLOW)Compiling MLX42...$(NO_COLOR)"
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4 > /dev/null
+	@cmake $(LIBMLX) -B $(LIBMLX)/build > /dev/null 2>&1 && make -C $(LIBMLX)/build -j4 > /dev/null 2>&1
 	@echo "$(GREEN)Compilation of MLX42 done.$(NO_COLOR)"
 
 %.o: %.c
