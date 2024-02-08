@@ -1,4 +1,4 @@
-NAME = so_long
+NAME = philo
 
 CC = gcc
 
@@ -14,6 +14,8 @@ SOURCES = src/main.c \
 			src/init.c \
 			src/utils.c \
 			src/thread.c \
+			src/monitor.c \
+			src/philo_routine.c \
 
 OBJ = $(SOURCES:.c=.o)
 
@@ -34,7 +36,7 @@ libft:
 
 $(NAME): $(OBJ) $(LIBS)
 	@echo "$(YELLOW)Compiling $(NAME)...$(NO_COLOR)"
-	@$(CC) $(CFLAGS) $(HEADER) $(LIBS) $(OBJ) -o $(NAME) > /dev/null
+	@$(CC) $(CFLAGS) $(HEADER) $(LIBS) $(OBJ) -o $(NAME) -lpthread -Llibft -lft > /dev/null
 	@echo "$(GREEN)Compilation of $(NAME) done.$(NO_COLOR)"
 
 clean:

@@ -12,9 +12,27 @@
 
 #include "philo.h"
 
+void	ft_destroy_all(t_program *program, pthread_mutex_t *forks)
+{
+	int	i;
+
+	i = 0;
+	while (i < program->philos[0].num_of_philos)
+	{
+		pthread_mutex_destroy(&forks[i]);
+		i++;
+	}
+	pthread_mutex_destroy(&program->dead_lock);
+	pthread_mutex_destroy(&program->meal_lock);
+	pthread_mutex_destroy(&program->write_lock);
+	free(forks);
+	free(program->philos);
+}
+
 void	ft_error(char *str)
 {
 	ft_putstr_fd(str, 2);
+	exit(1);
 }
 
 size_t	ft_get_time(void)

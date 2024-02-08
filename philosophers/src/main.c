@@ -19,12 +19,13 @@ int	main(int ac, char **av)
 	pthread_mutex_t	*forks;
 
 	if (ac != 5 && ac != 6)
-		return (ft_error("Wrong number of arguments\n"));
+		ft_error("Wrong number of arguments\n");
 	if (!ft_check_args(ac, av))
-		return (ft_error("Invalid arguments\n"));
+		ft_error("Invalid arguments\n");
 	ft_init_program(&program, &philo);
 	ft_init_forks(&forks, av[1]);
 	ft_init_philos(&philo, av, &program, forks);
-	ft_start_threads(&program, forks);
+	ft_start_threads(&program);
+	ft_destroy_all(&program, forks);
 	return (0);
 }

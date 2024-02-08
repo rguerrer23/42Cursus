@@ -4,7 +4,9 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-SOURCES = ft_isdigit.c \ ft_atoi.c \ ft_putchar_fd
+SOURCES = ft_isdigit.c \
+			ft_atoi.c \
+			ft_putstr_fd.c \
 
 OBJ = $(SOURCES:.c=.o)
 
