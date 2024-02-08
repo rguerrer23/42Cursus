@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 18:40:44 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/02/08 12:53:23 by rguerrer         ###   ########.fr       */
+/*   Created: 2024/02/08 13:03:35 by rguerrer          #+#    #+#             */
+/*   Updated: 2024/02/08 13:04:24 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+void	*ft_philo_routine(void *philo)
 {
-	t_program	program;
-	t_philo		philo;
-	pthread_mutex_t	*forks;
+	t_philo	*ph;
 
-	if (ac != 5 && ac != 6)
-		return (ft_error("Wrong number of arguments\n"));
-	if (!ft_check_args(ac, av))
-		return (ft_error("Invalid arguments\n"));
-	ft_init_program(&program, &philo);
-	ft_init_forks(&forks, av[1]);
-	ft_init_philos(&philo, av, &program, forks);
-	ft_start_threads(&program, forks);
-	return (0);
+	ph = (t_philo *)philo;
+	while (1)
+	{
+		ft_take_forks(ph);
+		ft_eat(ph);
+		ft_sleep(ph);
+		ft_think(ph);
+	}
+	return (NULL);
 }
