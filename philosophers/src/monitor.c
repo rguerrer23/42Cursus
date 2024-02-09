@@ -34,5 +34,5 @@ void	*ft_monitor(void *arg)
 			i++;
 		}
 	}
-	return (NULL);
+	return (arg);
 }
