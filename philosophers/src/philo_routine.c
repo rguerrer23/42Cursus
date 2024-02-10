@@ -27,29 +27,37 @@ int	ft_dead_loop(t_philo *ph)
 void	ft_eat(t_philo *ph)
 {
 	pthread_mutex_lock(ph->r_fork);
-	printf("%zu %d has taken a fork\n", ft_get_time() - ph->start_time, ph->id);
+	ft_print_status(ph, "has taken a fork\n", ph->id);
+	if (ph->num_of_philos == 1)
+	{
+		ft_usleep(ph->time_to_die);
+		pthread_mutex_unlock(ph->r_fork);
+		return ;
+	}
 	pthread_mutex_lock(ph->l_fork);
-	printf("%zu %d has taken a fork\n", ft_get_time() - ph->start_time, ph->id);
-	ft_usleep(ph->time_to_eat * 1000);
-	printf("%zu %d is eating\n", ft_get_time() - ph->start_time, ph->id);
-	pthread_mutex_lock(ph->meal_lock);
-	ph->last_meal = ft_get_time();
+	ft_print_status(ph, "has taken a fork\n", ph->id);
+	ph->eating = 1;
+	ft_print_status(ph, "is eating\n", ph->id);
+	pthread_mutex_lock(ph->meal_lock);	
+	ph->last_meal = ft_get_time();	
 	ph->meals_eaten++;
+	pthread_mutex_unlock(ph->meal_lock);
+	ft_usleep(ph->time_to_eat);
+	ph->eating = 0;
 	pthread_mutex_unlock(ph->r_fork);
 	pthread_mutex_unlock(ph->l_fork);
-	pthread_mutex_unlock(ph->meal_lock);
+	
 }
 
 void	ft_sleep(t_philo *ph)
 {
-	usleep(ph->time_to_sleep * 1000);
-	printf("%zu %d is sleeping\n", ft_get_time() - ph->start_time, ph->id);
-
+	ft_print_status(ph, "is sleeping\n", ph->id);
+	ft_usleep(ph->time_to_sleep);
 }
 
 void	ft_think(t_philo *ph)
 {
-	printf("%zu %d is thinking\n", ft_get_time() - ph->start_time, ph->id);
+	ft_print_status(ph, "is thinking\n", ph->id);
 }
 
 void	*ft_philo_routine(void *philo)
@@ -57,6 +65,8 @@ void	*ft_philo_routine(void *philo)
 	t_philo	*ph;
 
 	ph = (t_philo *)philo;
+	if (ph->id % 2 == 0)
+		usleep(1);
 	while (!ft_dead_loop(ph))
 	{
 		ft_eat(ph);

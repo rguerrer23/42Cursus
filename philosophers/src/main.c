@@ -29,7 +29,7 @@ int	main(int ac, char **av)
 	ft_init_program(&program, philo);
 	ft_init_forks(forks, av[1]);
 	ft_init_philos(philo, av, &program, forks);
-	ft_start_threads(&program);
+	ft_start_threads(&program, forks);
 	ft_destroy_all(NULL, &program, forks);
 	free(philo);
 	free(forks);

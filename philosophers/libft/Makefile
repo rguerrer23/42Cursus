@@ -7,6 +7,7 @@ CFLAGS = -Wall -Wextra -Werror
 SOURCES = ft_isdigit.c \
 			ft_atoi.c \
 			ft_putstr_fd.c \
+			ft_putnbr_fd.c \
 
 OBJ = $(SOURCES:.c=.o)
 

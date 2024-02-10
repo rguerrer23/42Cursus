@@ -19,17 +19,21 @@ int	ft_check_num_meals(t_philo *philo)
 
 	i = 0;
 	Check = 0;
-	while(i < philo->num_of_philos)
+	if (philo[0].num_times_to_eat == -1)
+		return (0);
+	while(i < philo[0].num_of_philos)
+	{
+		pthread_mutex_lock(philo[i].meal_lock);
 		if (philo[i].meals_eaten >= philo[i].num_times_to_eat)
 			Check++;
-	if (Check == philo->num_of_philos)
+		pthread_mutex_unlock(philo[i].meal_lock);
+		i++;
+	}
+	if (Check == philo[0].num_of_philos)
 	{
 		pthread_mutex_lock(philo->dead_lock);
 		*philo->dead = 1;
 		pthread_mutex_unlock(philo->dead_lock);
-		pthread_mutex_lock(philo->write_lock);
-		printf("All philos ate %d times\n", philo->num_times_to_eat);
-		pthread_mutex_unlock(philo->write_lock);
 		return (1);
 	}
 	return (0);
@@ -40,18 +44,18 @@ int	ft_check_died(t_philo *philo)
 	int		i;
 
 	i = 0;
-	while(i < philo->num_of_philos)
+	while(i < philo[0].num_of_philos)
 	{
-		if (philo[i].time_to_die < ft_get_time() - philo[i].last_meal)
+		pthread_mutex_lock(philo[i].meal_lock);
+		if (philo[i].time_to_die <= ft_get_time() - philo[i].last_meal && philo[i].eating == 0)
 		{
-			pthread_mutex_lock(philo[i].dead_lock);
-			*philo[i].dead = 1;
-			pthread_mutex_unlock(philo[i].dead_lock);
-			pthread_mutex_lock(philo[i].write_lock);
-			printf("%zu %d died\n", ft_get_time() - philo[i].start_time, philo[i].id);
-			pthread_mutex_unlock(philo[i].write_lock);
+			ft_print_status(philo, "died\n", philo[i].id);
+			pthread_mutex_lock(philo[0].dead_lock);
+			*philo->dead = 1;
+			pthread_mutex_unlock(philo[0].dead_lock);
 			return (1);
 		}
+		pthread_mutex_unlock(philo[i].meal_lock);
 		i++;
 	}
 	return (0);

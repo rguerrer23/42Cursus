@@ -2,7 +2,7 @@ NAME = philo
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 LIBFT = ./libft
 
@@ -13,7 +13,7 @@ SOURCES = src/main.c \
 			src/check_args.c \
 			src/init.c \
 			src/utils.c \
-			src/thread.c \
+			src/threads.c \
 			src/monitor.c \
 			src/philo_routine.c \
 

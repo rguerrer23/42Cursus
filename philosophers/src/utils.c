@@ -12,6 +12,20 @@
 
 #include "philo.h"
 
+void	ft_print_status(t_philo *philo, char *str, int id)
+{
+	pthread_mutex_lock(philo->write_lock);
+	if (!ft_dead_loop(philo))
+	{
+		ft_putnbr_fd(ft_get_time() - philo->start_time, 1);
+		ft_putstr_fd(" ", 1);
+		ft_putnbr_fd(id, 1);
+		ft_putstr_fd(" ", 1);
+		ft_putstr_fd(str, 1);
+	}
+	pthread_mutex_unlock(philo->write_lock);
+}
+
 void	ft_destroy_all(char *str, t_program *program, pthread_mutex_t *forks)
 {
 	int	i;
