@@ -34,5 +34,6 @@ void	ft_start_threads(t_program *program)
 		if (pthread_join(program->philos[i].thread, NULL) != 0)
 			ft_error("Error joining thread\n");
 		i++;
+		printf("%d\n", i);
 	}
 }

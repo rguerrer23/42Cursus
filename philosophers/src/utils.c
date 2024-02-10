@@ -12,21 +12,24 @@
 
 #include "philo.h"
 
-void	ft_destroy_all(t_program *program, pthread_mutex_t *forks)
+void	ft_destroy_all(char *str, t_program *program, pthread_mutex_t *forks)
 {
 	int	i;
 
 	i = 0;
+	if (str)
+	{
+		ft_putstr_fd(str, 2);
+		ft_putstr_fd("\n", 2);
+	}
+	pthread_mutex_destroy(&program->dead_lock);
+	pthread_mutex_destroy(&program->meal_lock);
+	pthread_mutex_destroy(&program->write_lock);
 	while (i < program->philos[0].num_of_philos)
 	{
 		pthread_mutex_destroy(&forks[i]);
 		i++;
 	}
-	pthread_mutex_destroy(&program->dead_lock);
-	pthread_mutex_destroy(&program->meal_lock);
-	pthread_mutex_destroy(&program->write_lock);
-	free(forks);
-	free(program->philos);
 }
 
 void	ft_error(char *str)

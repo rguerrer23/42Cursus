@@ -54,13 +54,13 @@ void	ft_error(char *str);
 int		ft_check_args(int ac, char **av);
 void	ft_init_philos(t_philo *philo, char **av, t_program *program,
 			pthread_mutex_t *forks);
-void	ft_init_forks(pthread_mutex_t **forks, char *num);
+void	ft_init_forks(pthread_mutex_t *forks, char *num);
 void	ft_init_program(t_program *program, t_philo *philo);
 size_t	ft_get_time(void);
 void	*ft_philo_routine(void *philo);
 void	ft_start_threads(t_program *program);
 void	*ft_monitor(void *arg);
-void	ft_destroy_all(t_program *program, pthread_mutex_t *forks);
+void	ft_destroy_all(char *str, t_program *program, pthread_mutex_t *forks);
 int		ft_usleep(size_t time);
 
 #endif

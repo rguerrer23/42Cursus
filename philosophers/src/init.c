@@ -46,17 +46,14 @@ void	ft_init_philos(t_philo *philo, char **av, t_program *program,
 	}
 }
 
-void	ft_init_forks(pthread_mutex_t **forks, char *num)
+void	ft_init_forks(pthread_mutex_t *forks, char *num)
 {
 	int	i;
 
-	*forks = malloc(sizeof(pthread_mutex_t) * ft_atoi(num));
-	if (!*forks)
-		ft_error("Malloc error\n");
 	i = 0;
 	while (i < ft_atoi(num))
 	{
-		pthread_mutex_init(&(*forks)[i], NULL);
+		pthread_mutex_init(&forks[i], NULL);
 		i++;
 	}
 }
