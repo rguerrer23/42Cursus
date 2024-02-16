@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:42:09 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/02/08 13:08:56 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/02/08 13:28:42 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_error(char *str)
 {
 	ft_putstr_fd(str, 2);
+	exit(1);
 }
 
 size_t	ft_get_time(void)
