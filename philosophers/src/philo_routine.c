@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 13:03:35 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/02/16 16:01:13 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:26:24 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	ft_eat(t_philo *ph)
 	ph->eating = 0;
 	pthread_mutex_unlock(ph->r_fork);
 	pthread_mutex_unlock(ph->l_fork);
-	
 }
 
 void	ft_sleep(t_philo *ph)
