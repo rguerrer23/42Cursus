@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 11:59:12 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/02/16 16:18:11 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:37:36 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,5 @@ int	ft_start_threads(t_program *program, pthread_mutex_t *forks)
 			ft_destroy_all("Error joining thread\n", program, forks);
 		i++;
 	}
-	printf("All threads joined\n");
 	return (0);
 }

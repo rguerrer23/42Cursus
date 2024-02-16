@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:18:51 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/02/16 16:14:25 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:39:24 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,31 @@ int	ft_check_num_meals(t_philo *philo)
 	return (0);
 }
 
-int	ft_check_died(t_philo *philo)
+int	philosopher_dead(t_philo *philo, size_t time_to_die)
 {
-	int		i;
+	pthread_mutex_lock(philo->meal_lock);
+	if (ft_get_time() - philo->last_meal >= time_to_die
+		&& philo->eating == 0)
+		return (pthread_mutex_unlock(philo->meal_lock), 1);
+	pthread_mutex_unlock(philo->meal_lock);
+	return (0);
+}
+
+int	ft_check_died(t_philo *philos)
+{
+	int	i;
 
 	i = 0;
-	while(i < philo[0].num_of_philos)
+	while (i < philos[0].num_of_philos)
 	{
-		pthread_mutex_lock(philo[i].meal_lock);
-		if (philo[i].time_to_die <= ft_get_time() - philo[i].last_meal && philo[i].eating == 0)
+		if (philosopher_dead(&philos[i], philos[i].time_to_die))
 		{
-			ft_print_status(philo, "died\n", philo[i].id);
-			pthread_mutex_lock(philo[0].dead_lock);
-			*philo->dead = 1;
-			pthread_mutex_unlock(philo[0].dead_lock);
+			ft_print_status(philos, "died", philos[i].id);
+			pthread_mutex_lock(philos[0].dead_lock);
+			*philos->dead = 1;
+			pthread_mutex_unlock(philos[0].dead_lock);
 			return (1);
 		}
-		pthread_mutex_unlock(philo[i].meal_lock);
 		i++;
 	}
 	return (0);
