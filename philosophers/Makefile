@@ -25,7 +25,9 @@ NO_COLOR = \033[0m
 
 ALL: libft $(NAME)
 
-libft:
+libft: $(LIBFT)/libft.a
+
+$(LIBFT)/libft.a:
 	@echo "$(YELLOW)Compiling libft...$(NO_COLOR)"
 	@make -C $(LIBFT) > /dev/null
 	@echo "$(GREEN)Compilation of libft done.$(NO_COLOR)"

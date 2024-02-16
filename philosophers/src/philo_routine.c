@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.c                                          :+:      :+:    :+:   */
+/*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 13:03:35 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/02/08 13:04:24 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:01:13 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_dead_loop(t_philo *ph)
 {
 	pthread_mutex_lock(ph->dead_lock);
-	if (*ph->dead)
+	if (*ph->dead == 1)
 	{
 		pthread_mutex_unlock(ph->dead_lock);
 		return (1);
@@ -66,7 +66,7 @@ void	*ft_philo_routine(void *philo)
 
 	ph = (t_philo *)philo;
 	if (ph->id % 2 == 0)
-		usleep(1);
+		ft_usleep(1);
 	while (!ft_dead_loop(ph))
 	{
 		ft_eat(ph);
