@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/time.h>
 
 typedef struct s_philo
 {
@@ -51,11 +52,17 @@ typedef struct s_program
 
 void	ft_error(char *str);
 int		ft_check_args(int ac, char **av);
-void	ft_start_threads(t_program *s_program, pthread_mutex_t *forks);
 void	ft_init_philos(t_philo *philo, char **av, t_program *program,
 			pthread_mutex_t *forks);
-void	ft_init_forks(pthread_mutex_t **forks, char *num);
+void	ft_init_forks(pthread_mutex_t *forks, char *num);
 void	ft_init_program(t_program *program, t_philo *philo);
 size_t	ft_get_time(void);
+void	*ft_philo_routine(void *philo);
+int		ft_start_threads(t_program *program, pthread_mutex_t *forks);
+void	*ft_monitor(void *arg);
+void	ft_destroy_all(char *str, t_program *program, pthread_mutex_t *forks);
+int		ft_usleep(size_t time);
+void	ft_print_status(t_philo *philo, char *str, int id);
+int		ft_dead_loop(t_philo *ph);
 
 #endif
