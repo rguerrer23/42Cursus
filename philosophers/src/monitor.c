@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:18:51 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/02/16 16:39:24 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:16:22 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 int	ft_check_num_meals(t_philo *philo)
 {
 	int		i;
-	int		Check;
+	int		check;
 
 	i = 0;
-	Check = 0;
+	check = 0;
 	if (philo[0].num_times_to_eat == -1)
 		return (0);
-	while(i < philo[0].num_of_philos)
+	while (i < philo[0].num_of_philos)
 	{
 		pthread_mutex_lock(philo[i].meal_lock);
 		if (philo[i].meals_eaten >= philo[i].num_times_to_eat)
-			Check++;
+			check++;
 		pthread_mutex_unlock(philo[i].meal_lock);
 		i++;
 	}
-	if (Check == philo[0].num_of_philos)
+	if (check == philo[0].num_of_philos)
 	{
 		pthread_mutex_lock(philo->dead_lock);
 		*philo->dead = 1;

@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:40:44 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/02/16 15:45:50 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:19:40 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(int ac, char **av)
 {
-	t_program	program;
-	t_philo		*philo;
+	t_program		program;
+	t_philo			*philo;
 	pthread_mutex_t	*forks;
 
 	if (ac != 5 && ac != 6)
