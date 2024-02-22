@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 10:19:26 by rguerrer          #+#    #+#             */
-/*   Updated: 2023/04/28 10:19:26 by rguerrer         ###   ########.fr       */
+/*   Created: 2023/04/27 20:15:52 by rguerrer          #+#    #+#             */
+/*   Updated: 2024/02/22 12:30:57 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
-	long int	nb;
+	int	x;
 
-	nb = n;
-	if (nb < 0)
+	x = 0;
+	while (s[x] != '\0')
 	{
-		write(fd, "-", 1);
-		nb = -nb;
+		write(fd, &s[x], 1);
+		x++;
 	}
-	if (nb > 9)
-		ft_putnbr_fd(nb / 10, fd);
-	write(fd, &"0123456789"[nb % 10], 1);
 }

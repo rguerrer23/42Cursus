@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/18 15:55:39 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/02/22 11:55:45 by rguerrer         ###   ########.fr       */
+/*   Created: 2024/02/01 18:48:27 by rguerrer          #+#    #+#             */
+/*   Updated: 2024/02/22 12:19:08 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo.h"
 
-long int	ft_atoi(const char *str)
+int	ft_check_nums(char **av)
 {
-	long int	x;
-	long int	num;
-	long int	signo;
+	if (ft_atoi(av[1]) <= 0 || ft_atoi(av[1]) > 2147483647)
+		return (1);
+	return (0);
+}
 
-	x = 0;
-	num = 0;
-	signo = 1;
-	while ((str[x] == ' ') || (str[x] >= 9 && str[x] <= 13))
-		x++;
-	if (str[x] == '-')
+int	ft_check_args(int ac, char **av)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	if (ft_check_nums(av) == 1)
+		return (0);
+	while (i < ac)
 	{
-		signo = -1;
-		x++;
+		j = -1;
+		while (av[i][++j])
+			if (!ft_isdigit(av[i][j]))
+				return (0);
+		i++;
 	}
-	else if (str[x] == '+')
-		x++;
-	while (str[x] != '\0' && (str[x] >= '0' && str[x] <= '9'))
-	{
-		num *= 10;
-		num += str[x] - '0';
-		x++;
-	}
-	return (num * signo);
+	return (1);
 }

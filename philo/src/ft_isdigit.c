@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 17:36:28 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/02/22 11:56:18 by rguerrer         ###   ########.fr       */
+/*   Created: 2023/04/17 11:46:44 by rguerrer          #+#    #+#             */
+/*   Updated: 2024/02/22 12:31:05 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "philo.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-
-int			ft_isdigit(int c);
-long int	ft_atoi(const char *str);
-void		ft_putstr_fd(char *s, int fd);
-void		ft_putnbr_fd(int n, int fd);
-
-#endif
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
