@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 18:43:29 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/02/08 13:25:22 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:03:46 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "../libft/libft.h"
 # include <pthread.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/time.h>
