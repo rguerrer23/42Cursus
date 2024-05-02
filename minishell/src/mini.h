@@ -47,5 +47,6 @@ typedef struct s_shell
 }				t_shell;
 
 int		main(int argc, char **argv, char **envp);
+void	exit_shell(t_shell *shell, int status);
 
 #endif

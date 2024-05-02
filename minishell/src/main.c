@@ -47,6 +47,16 @@ void	shell_read(t_shell *shell)
 		add_history(shell->line);
 }
 
+void	shell_clean(t_shell *shell)
+{
+	if (shell->line)
+		free(shell->line);
+	if (shell->tokens)
+		free_tokens(shell->tokens);
+	if (shell->ast)
+		free_ast(shell->ast);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_shell	shell;
