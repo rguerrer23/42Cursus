@@ -7,6 +7,10 @@ CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I.
 
 SOURCES = src/main.c \
+		  src/parser.c \
+		  src/execute.c \
+		  src/utils.c \
+		  src/lexer.c \
 
 LIBS = libft/libft.a
 

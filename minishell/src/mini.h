@@ -23,12 +23,13 @@
 # include <sys/wait.h>
 # include <sys/stat.h>
 # include <signal.h>
+# include "libft/libft.h"
 # include <readline/readline.h>
 # include <readline/history.h>
-# include "libft/libft.h"
 
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
+
 
 # define SHELL_NAME "minishell"
 # define SHELL_PROMPT "minishell$ "
@@ -43,10 +44,14 @@ typedef struct s_shell
 	pid_t		pid;
 	int			fd_in;
 	int			fd_out;
-	int			fd_err;
 }				t_shell;
 
 int		main(int argc, char **argv, char **envp);
 void	exit_shell(t_shell *shell, int status);
+void	free_tokens(char **tokens);
+void	shell_lexer(t_shell *shell);
+void	shell_execute(t_shell *shell);
+void	free_ast(char **ast);
+void	shell_parser(t_shell *shell);
 
 #endif

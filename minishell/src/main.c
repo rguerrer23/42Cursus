@@ -19,9 +19,8 @@ int	shell_init(t_shell *shell, char **envp)
 	shell->ast = NULL;
 	shell->exit_status = 0;
 	shell->pid = 0;
-	shell->fd_in = STDIN_FILENO;
-	shell->fd_out = STDOUT_FILENO;
-	shell->fd_err = STDERR_FILENO;
+	shell->fd_in = dup(0);
+	shell->fd_out = dup(1);
 	return (EXIT_SUCCESS);
 }
 
