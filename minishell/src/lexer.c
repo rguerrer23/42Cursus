@@ -43,7 +43,7 @@ char *ft_strtok(char *str, const char *delim)
 		str = last;
 	if (!str)
 		return (NULL);
-	str += ft_strspn(str, delim);
+	str = ft_strspn(str, delim);
 	if (*str == '\0')
 	{
 		last = NULL;
@@ -88,10 +88,10 @@ void	shell_lexer(t_shell *shell)
 {
 	char	*tmpline;
 
-	tmpline = t_shell.line;
-	t_shell.tokens = ft_tokenize(tmpline);
+	tmpline = shell->line;
+	shell->tokens = ft_tokenize(tmpline);
 	free(tmpline);
-	t_shell.line = NULL;
+	shell->line = NULL;
 	if (!shell->tokens)
 		exit_shell(shell, EXIT_FAILURE);
 }

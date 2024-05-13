@@ -26,7 +26,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBS)
 	@echo "$(YELLOW)Compiling $(NAME)...$(NO_COLOR)"
-	@$(CC) $(CFLAGS)  $(INCLUDES) $(OBJ) $(LIBS) -o $(NAME) > /dev/null
+	@$(CC) $(CFLAGS)  $(INCLUDES) $(OBJ) $(LIBS) -o $(NAME) -lreadline > /dev/null
 	@echo "$(GREEN)Compilation of $(NAME) done.$(NO_COLOR)"
 
 libft/libft.a:

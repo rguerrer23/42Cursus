@@ -44,6 +44,7 @@ typedef struct s_shell
 	pid_t		pid;
 	int			fd_in;
 	int			fd_out;
+	int			fd_err;
 }				t_shell;
 
 int		main(int argc, char **argv, char **envp);

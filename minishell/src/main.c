@@ -65,9 +65,9 @@ int	main(int argc, char **argv, char **envp)
 		ft_putstr_fd("minishell: invalid arguments\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
+	shell_init(&shell, envp);
  	while (1)
 	{
-		shell_init(&shell, envp);
 		shell_prompt(&shell);
 		shell_read(&shell);
 		shell_lexer(&shell);
