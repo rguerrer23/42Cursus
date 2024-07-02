@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rguerrer <rguerrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 12:03:39 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/07/02 17:02:39 by rguerrer         ###   ########.fr       */
+/*   Created: 2024/06/18 17:52:13 by rguerrer          #+#    #+#             */
+/*   Updated: 2024/06/20 17:36:01 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "inc/minishell.h"
 
-int g_mutex = 0;
+/* Esta funcion imprime el directorio actual de trabajo. */
 
-
-int	main(int ac, char **av, char **envp)
+int	ft_pwd(void)
 {
-	t_shell	shell;
-	t_cmd	cmd;
+	char	*cwd;
 
-	(void)av;
-	if (ac > 1)
-	{
-		ft_putstr_fd(RED"minishell: invalid arguments\n"NC, STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
-	shell.env = envp;
-	shell.line = NULL;
-	char *full_cmd[] = {"ls", NULL};
-	cmd.full_cmd = full_cmd;
-	cmd.cmd_path = NULL;
-	execute(&shell, &cmd);
-	return (0);
+	cwd = getcwd(NULL, 0);
+	ft_putstr_fd(cwd, STDOUT_FILENO);
+	ft_putstr_fd("\n", STDOUT_FILENO);
+	free(cwd);
+	return (EXIT_SUCCESS);
 }

@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rguerrer <rguerrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 12:03:39 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/07/02 17:02:39 by rguerrer         ###   ########.fr       */
+/*   Created: 2024/06/18 17:05:28 by rguerrer          #+#    #+#             */
+/*   Updated: 2024/06/20 17:35:34 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "inc/minishell.h"
 
-int g_mutex = 0;
+/* Esta funcion cambia el directorio actual de trabajo. */
 
-
-int	main(int ac, char **av, char **envp)
+int	ft_cd(char *path)
 {
-	t_shell	shell;
-	t_cmd	cmd;
-
-	(void)av;
-	if (ac > 1)
+	if (chdir(path) != 0)
 	{
-		ft_putstr_fd(RED"minishell: invalid arguments\n"NC, STDERR_FILENO);
+		write(STDERR_FILENO, "cd failed", 9);
 		return (EXIT_FAILURE);
 	}
-	shell.env = envp;
-	shell.line = NULL;
-	char *full_cmd[] = {"ls", NULL};
-	cmd.full_cmd = full_cmd;
-	cmd.cmd_path = NULL;
-	execute(&shell, &cmd);
-	return (0);
+	return (EXIT_SUCCESS);
 }

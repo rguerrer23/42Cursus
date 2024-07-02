@@ -1,38 +1,52 @@
+# (Variable) Nombre de nuestra libreria precompilada.
 NAME = libft.a
 
-CC = gcc
+# (Variable) Funciones que queremos compilar en nuestra libreria.
+FUNCTIONS = src/ft_isalpha.c src/ft_isdigit.c src/ft_isalnum.c src/ft_isascii.c src/ft_isprint.c src/ft_strlen.c \
+			src/ft_memset.c src/ft_bzero.c src/ft_memcpy.c src/ft_memmove.c src/ft_strlcpy.c src/ft_strlcat.c \
+			src/ft_toupper.c src/ft_tolower.c src/ft_strchr.c src/ft_strrchr.c src/ft_strncmp.c src/ft_memchr.c \
+			src/ft_memcmp.c src/ft_strnstr.c src/ft_atoi.c src/ft_calloc.c src/ft_strdup.c src/ft_substr.c \
+			src/ft_strjoin.c src/ft_strtrim.c src/ft_split.c src/ft_itoa.c src/ft_strmapi.c src/ft_striteri.c \
+			src/ft_putchar_fd.c src/ft_putstr_fd.c src/ft_putendl_fd.c src/ft_putnbr_fd.c src/ft_lstnew_bonus.c \
+			src/ft_lstadd_front_bonus.c src/ft_lstsize_bonus.c src/ft_lstlast_bonus.c src/ft_lstadd_back_bonus.c \
+            src/ft_lstdelone_bonus.c src/ft_lstclear_bonus.c src/ft_lstiter_bonus.c src/ft_lstmap_bonus.c \
+			src/ft_printf.c \
+			src/ft_printing_char.c \
+			src/ft_printing_string.c \
+			src/ft_printing_unsignum.c \
+			src/ft_printing_signum.c \
+            src/ft_printing_pointer.c \
+			src/ft_printing_hexnum.c \
+			src/get_next_line.c \
+			src/get_next_line_utils.c \
+			src/ft_isdigit_str.c \
+			src/ft_word_counter.c \
+			src/ft_matrixdup.c
+			
+# (Variable) Convierte todos los archivos ".c" de FUNCTIONS en ".o", por motivos de optimizacion.
+OBJECTS = $(FUNCTIONS:.c=.o)
 
-CFLAGS = -Wall -Werror -Wextra
+# (Variable) Flags para compilar.
+FLAGS = -Wall -Werror -Wextra -c
 
-LIB = ar rcs
-
-SOURCES = ft_isalpha.c ft_isalnum.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_tolower.c ft_toupper.c ft_strchr.c ft_strlen.c ft_strncmp.c ft_strrchr.c ft_strnstr.c ft_strlcpy.c ft_strlcat.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_bzero.c ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c 
-
-OBJ = $(SOURCES:.c=.o)
-
-BONUS = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
-
-BONUS_OBJS = $(BONUS:.c=.o)
-
-RM = rm -f
-
+# (Reglas) 
+# Importante: las reglas se ejecutan de abajo hacia arriba y de derecha a izquierda.
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(LIB) $(NAME) $(OBJ)
-
-bonus: $(OBJS) $(BONUS_OBJS)
-	$(LIB) $(NAME) $(OBJS) $(BONUS_OBJS)
+$(NAME): $(OBJECTS)
+	@ar rcs $(NAME) $(OBJECTS)
 
 %.o: %.c
-	$(CC) -c $(CFLAGS) -g -c $< -o ${<:.c=.o}
+	@gcc $(FLAGS) -I includes -o $@ -c $<
 
 clean:
-	$(RM) $(OBJ) $(BONUS_OBJS)
-
+	@rm -f $(OBJECTS)
+	
 fclean: clean
-	$(RM) $(NAME)
-
+	@rm -f $(NAME)
+	
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+# Importante: las "reglas fónicas" sirven para decirle al programa que la prioridad
+# en las ejecuciones con nombre x van antes que cualquier otra cosa con mismo nombre.
+.PHONY: all clean fclean re

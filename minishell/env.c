@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rguerrer <rguerrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 12:03:39 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/07/02 17:02:39 by rguerrer         ###   ########.fr       */
+/*   Created: 2024/06/19 10:48:53 by rguerrer          #+#    #+#             */
+/*   Updated: 2024/06/20 17:35:52 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "inc/minishell.h"
 
-int g_mutex = 0;
+/* Esta funcion imprime las variables de entorno. */
 
-
-int	main(int ac, char **av, char **envp)
+void	ft_env(t_shell *shell)
 {
-	t_shell	shell;
-	t_cmd	cmd;
+	int	i;
 
-	(void)av;
-	if (ac > 1)
+	i = 0;
+	while (shell->env[i])
 	{
-		ft_putstr_fd(RED"minishell: invalid arguments\n"NC, STDERR_FILENO);
-		return (EXIT_FAILURE);
+		ft_putstr_fd(shell->env[i], STDOUT_FILENO);
+		ft_putstr_fd("\n", STDOUT_FILENO);
+		i++;
 	}
-	shell.env = envp;
-	shell.line = NULL;
-	char *full_cmd[] = {"ls", NULL};
-	cmd.full_cmd = full_cmd;
-	cmd.cmd_path = NULL;
-	execute(&shell, &cmd);
-	return (0);
 }
