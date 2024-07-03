@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rguerrer <rguerrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 12:03:39 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/07/03 13:09:27 by rguerrer         ###   ########.fr       */
+/*   Created: 2024/07/03 11:41:16 by rguerrer          #+#    #+#             */
+/*   Updated: 2024/07/03 11:44:18 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	main(int ac, char **av, char **envp)
+int has_pipe(char **cmd)
 {
-	t_shell	shell;
-	t_cmd	cmd;
+    int i;
 
-	(void)av;
-	if (ac > 1)
-	{
-		ft_putstr_fd(RED"minishell: invalid arguments\n"NC, STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
-	shell.env = envp;
-	shell.line = NULL;
-	char *full_cmd[] = {"cat", NULL};
-	cmd.full_cmd = full_cmd;
-	cmd.cmd_path = NULL;
-	execute(&shell, &cmd);
-	return (0);
+    i = 0;
+    while (cmd[i])
+    {
+        if (ft_strcmp(cmd[i], "|") == 0)
+            return (1);
+        i++;
+    }
+    return (0);
+}
+
+int	error_msg(char *cmd, int status)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(cmd, 2);
+	if (status == 0)
+		ft_putstr_fd(": command not found\n", 2);
+	else
+		ft_putstr_fd(": No such file or directory\n", 2);
+	return (127);
 }

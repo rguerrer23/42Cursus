@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:59:23 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/07/02 16:14:40 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:36:59 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_new_env(char *name_var, char *value_var, t_shell *shell)
 	char	**new_env;
 
 	i = 0;
+	printf("name_var: %s\n", name_var);
 	while (shell->env[i])
 		i++;
 	new_env = (char **)malloc(sizeof(char *) * (i + 2));

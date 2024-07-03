@@ -4,7 +4,7 @@ CFLAGS		= -Wall
 
 INC			= -I.
 
-SRC			= src/main.c cd.c util.c echo.c env.c exit.c export.c pwd.c unset.c executor/execute.c executor/exec_ins.c executor/builtins.c ft_strcmp.c get_cmd_path.c
+SRC			= src/main.c cd.c executor/utils.c util.c echo.c env.c exit.c export.c pwd.c unset.c executor/execute.c executor/exec_ins.c executor/builtins.c ft_strcmp.c
 
 LIBFT		= libft/libft.a
 
