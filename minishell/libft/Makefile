@@ -21,7 +21,17 @@ FUNCTIONS = src/ft_isalpha.c src/ft_isdigit.c src/ft_isalnum.c src/ft_isascii.c 
 			src/get_next_line_utils.c \
 			src/ft_isdigit_str.c \
 			src/ft_word_counter.c \
-			src/ft_matrixdup.c
+			src/ft_matrixdup.c \
+			src/ft_substrlen.c \
+			src/ft_strd_len.c \
+			src/ft_strd_free.c \
+			src/ft_strd_new.c \
+			src/ft_strd_add.c \
+			src/ft_strd_lastdel.c \
+			src/ft_strcmp.c \
+			src/ft_strndup.c \
+			src/ft_insert_str.c \
+			src/ft_delete_str.c 
 			
 # (Variable) Convierte todos los archivos ".c" de FUNCTIONS en ".o", por motivos de optimizacion.
 OBJECTS = $(FUNCTIONS:.c=.o)

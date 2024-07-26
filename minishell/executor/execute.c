@@ -6,24 +6,42 @@
 /*   By: rguerrer <rguerrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 11:37:06 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/07/03 12:27:19 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:57:01 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
 /* Esta funcion comprueba si existe un builtin y escoje*/
-void	execute(t_shell *shell, t_cmd *cmds)
+void	exec_choose(t_cmd **cmds, t_shell *shell, int i)
 {
-	char	**cmd;
+	shell->g_status = 0;
+	if (cmds[i]->cmd && is_builtin(cmds[i]->cmd) == 1)
+		execute_builtin(shell, cmds, i);
+	else if (cmds[i]->cmd)
+		execute_bin(shell, cmds, i);
+}
 
-	cmd = cmds->full_cmd;
-	if (cmd && ft_strcmp(cmd[0], "exit") == 0 && has_pipe(cmd) == 0)
-		ft_exit(shell);
-		//liberar memoria cmd
-	else if (cmd && is_builtin(cmd[0]) == 1)
-		execute_builtin(cmd, shell);
-	else if (cmd)
-		execute_ins(shell, cmds);
-	//despues liberar memoria y dejar igual que antes
+void	execute(t_cmd **cmds, t_shell *shell)
+{
+	int	i;
+
+	i = 0;
+	setup_redirections(shell);
+	while (cmds[i] != NULL)
+	{
+		shell->fdnextin = -1;
+		if (cmds[i + 1] != NULL)
+			apply_pipe(shell);
+		else
+			shell->fdout = STDOUT_FILENO;
+		apply_redirections(cmds[i]->incmd, shell);
+		apply_redirections(cmds[i]->outcmd, shell);
+		if (cmds[i]->cmd != NULL)
+			exec_choose(cmds, shell, i);
+		shell->fdin = shell->fdnextin;
+		i++;
+	}
+	reset_env(shell, cmds);
+	reset_redirections(shell);
 }

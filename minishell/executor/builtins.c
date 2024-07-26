@@ -6,7 +6,7 @@
 /*   By: rguerrer <rguerrer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 16:54:02 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/07/03 12:27:10 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:56:08 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,29 @@
 
 /* Esta funcion elige el builtin a ejecutar. */
 
-void	execute_builtin(char **full_cmd, t_shell *shell)
+void	execute_builtin(t_shell *shell, t_cmd **cmds, int i)
 {
 	char	*builtins;
 
-	builtins = full_cmd[0];
+	builtins = cmds[i]->cmd;
 	if (!ft_strcmp(builtins, "echo"))
-		ft_echo(full_cmd);
+		ft_echo(cmds[i]->args, shell);
 	else if (!ft_strcmp(builtins, "cd"))
-		ft_cd(full_cmd[1]);
+		ft_cd(cmds[i]->args, shell);
 	else if (!ft_strcmp(builtins, "env"))
-		ft_env(shell);
+		ft_env(shell, cmds[i]->args);
 	else if (!ft_strcmp(builtins, "exit"))
-		ft_exit(shell);
+		ft_exit(cmds[i]->args, shell);
 	else if (!ft_strcmp(builtins, "export"))
-		ft_export(full_cmd[1], full_cmd[3], shell);
+		ft_export(cmds[i]->args, shell);
 	else if (!ft_strcmp(builtins, "unset"))
-		ft_unset(full_cmd[1], shell);
+		ft_unset(cmds[i]->args, shell);
 	else if (!ft_strcmp(builtins, "pwd"))
-		ft_pwd();
+		ft_pwd(shell);
+	if (shell->fdin > 2)
+		close(shell->fdin);
+	if (shell->fdout > 2)
+		close(shell->fdout);
 }
 
 /* Esta funcion comprueba si el comando es un builtin o no. */
