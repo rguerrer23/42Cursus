@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rguerrer <rguerrer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:48:53 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/07/24 19:50:37 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/07/27 14:10:01 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,11 @@ void	ft_env(t_shell *shell, char **full_cmd)
 	error = ft_env_check(full_cmd, shell);
 	if (error == 0)
 	{
-		while (shell->env[i])
+		while (shell->env_list[i])
 		{
-			ft_putstr_fd(shell->env[i], shell->fdout);
+			ft_putstr_fd(shell->env_list[i]->key, shell->fdout);
+			ft_putstr_fd("=", shell->fdout);
+			ft_putstr_fd(shell->env_list[i]->value, shell->fdout);
 			ft_putstr_fd("\n", shell->fdout);
 			i++;
 		}

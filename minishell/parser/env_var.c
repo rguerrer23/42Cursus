@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_var.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rguerrer <rguerrer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:30:25 by kevlar            #+#    #+#             */
-/*   Updated: 2024/07/25 16:13:19 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:29:12 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	replace_var_env(char **cmd, int *j, char *status, t_var **list_var)
 	{
 		tmp = *cmd;
 		*cmd = ft_delete_str(tmp, *j, *j + 1);
-		free(tmp);
 		tmp = *cmd;
 		*cmd = ft_insert_str(tmp, status, *j);
 		free(tmp);
@@ -81,19 +80,17 @@ void	restore_dolar(char **dolar)
 	}
 }
 
-void	expand_env_var(t_shell *shell, char **envp)
+void	expand_env_var(t_shell *shell)
 {
-	t_var	**list_var;
 	int		i;
 	char	*status;
 
-	list_var = init_envp(envp);
 	status = ft_itoa(shell->g_status);
 	i = 0;
 	while (shell->full_cmd[i])
 	{
 		if (shell->full_cmd[i][0] != '\'')
-			do_command(&shell->full_cmd[i], list_var, status);
+			do_command(&shell->full_cmd[i], shell->env_list, status);
 		i++;
 	}
 	restore_dolar(shell->full_cmd);
@@ -104,5 +101,4 @@ void	expand_env_var(t_shell *shell, char **envp)
 		remove_quotes(shell->full_cmd[i]);
 		i++;
 	}
-	ft_free_envs(list_var);
 }

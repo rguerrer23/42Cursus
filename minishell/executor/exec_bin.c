@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_bin.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rguerrer <rguerrer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 16:43:22 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/07/25 11:37:43 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/07/27 18:22:43 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ static char	**get_bin_paths(t_shell *shell)
 	int	x;
 
 	x = 0;
-	while (shell->env && shell->env[x])
+	while (shell->env_list[x])
 	{
-		if (ft_strncmp(shell->env[x], "PATH=", 5) == 0)
-			return (ft_split(shell->env[x] + 5, ':'));
+		if (ft_strncmp(shell->env_list[x]->key, "PATH", 4) == 0)
+			return (ft_split(shell->env_list[x]->value, ':'));
 		x++;
 	}
 	return (NULL);
@@ -73,6 +73,4 @@ void	execute_bin(t_shell *shell, t_cmd **cmds, int i)
 		exc(shell->cmd_path, cmds, shell, i);
 	else
 		exc(cmds[i]->cmd, cmds, shell, i);
-	ft_strd_free(bin);
-	free(shell->cmd_path);
 }

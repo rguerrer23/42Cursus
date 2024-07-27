@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rguerrer <rguerrer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:39:41 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/07/25 15:31:57 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/07/27 14:29:44 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,22 @@ void	ft_unset_env(char **name_var, t_shell *shell, int x)
 	int	len;
 
 	i = 0;
-	while (shell->env[i] != NULL)
+	while (shell->env_list[i] != NULL)
 	{
 		len = ft_strlen(name_var[x]);
-		if (!ft_strncmp(shell->env[i], name_var[x], len)
-			&& shell->env[i][len] == '=')
+		if (!ft_strncmp(shell->env_list[i]->key, name_var[x], len)
+			&& shell->env_list[i]->key[len] == '\0')
 		{
-			free(shell->env[i]);
+			free(shell->env_list[i]->key);
+			free(shell->env_list[i]->value);
+			free(shell->env_list[i]);
 			j = i;
-			while (shell->env[j] != NULL)
+			while (shell->env_list[j] != NULL)
 			{
-				shell->env[j] = shell->env[j + 1];
+				shell->env_list[j] = shell->env_list[j + 1];
 				j++;
 			}
-			shell->env[j] = NULL;
+			shell->env_list[j] = NULL;
 			i--;
 		}
 		i++;

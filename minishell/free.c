@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rguerrer <rguerrer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 22:28:22 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/07/25 15:22:10 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/07/27 14:39:40 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,5 @@ void	ft_free_struct(t_shell *shell)
 		}
 		free(shell->cmds);
 	}
+	ft_free_envs(shell->env_list);
 }

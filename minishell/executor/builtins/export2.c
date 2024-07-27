@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rguerrer <rguerrer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:41:00 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/07/25 14:39:42 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/07/27 16:23:11 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,44 +91,42 @@ int	is_bad_env(char *env)
 	return (1);
 }
 
-char	*create_new_entry(char *value_var, char *name_var)
+t_var	*create_new_entry(char *value_var, char *name_var)
 {
-	char	*new_entry;
-	char	*temp;
+	t_var	*new_entry;
 
-	new_entry = ft_strjoin(name_var, "=");
+	new_entry = (t_var *)malloc(sizeof(t_var));
+	if (!new_entry)
+		return (NULL);
+	new_entry->key = ft_strdup(name_var);
 	if (value_var)
-	{
-		temp = ft_strjoin(new_entry, value_var);
-		free(new_entry);
-		new_entry = temp;
-		free(temp);
-	}
+		new_entry->value = ft_strdup(value_var);
+	else
+		new_entry->value = NULL;
 	return (new_entry);
 }
 
 void	ft_new_env(char *name_var, char *value_var, t_shell *shell)
 {
 	int		i;
-	char	**new_env;
-	char	*new_entry;
+	t_var	**new_env;
+	t_var	*new_entry;
 
 	i = 0;
-	while (shell->env[i])
+	while (shell->env_list[i])
 		i++;
-	new_env = (char **)malloc(sizeof(char *) * (i + 2));
+	new_env = (t_var **)malloc(sizeof(t_var *) * (i + 2));
 	if (!new_env)
 		return ;
 	i = 0;
-	while (shell->env[i])
+	while (shell->env_list[i])
 	{
-		new_env[i] = ft_strdup(shell->env[i]);
+		new_env[i] = shell->env_list[i];
 		i++;
 	}
 	new_entry = create_new_entry(value_var, name_var);
 	new_env[i] = new_entry;
 	new_env[i + 1] = NULL;
-	ft_strd_free(shell->env);
-	shell->env = new_env;
-	free(new_entry);
+	free(shell->env_list);
+	shell->env_list = new_env;
 }

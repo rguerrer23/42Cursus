@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rguerrer <rguerrer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 12:51:36 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/07/25 14:56:22 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:00:05 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ typedef struct s_shell
 	char	**split_cmd;
 	char	*prompt;
 	char	*parsed_prompt;
-	char	**env;
 	char	**full_cmd;
 	char	*cmd_path;
 	int		g_status;
@@ -107,6 +106,7 @@ typedef struct s_shell
 	int		prev_fd;
 	int		parse_error;
 	t_cmd	**cmds;
+	t_var	**env_list;
 }			t_shell;
 
 int			main(int argc, char **argv, char **envp);
@@ -138,7 +138,7 @@ int			strlen_end_word(char *prompt, int pos);
 char		*process_char(char *prompt, int *pos);
 t_var		**init_envp(char **envp);
 char		*key_x_value(t_var **env_list, char *str, t_shell *shell);
-void		expand_env_var(t_shell *shell, char **envp);
+void		expand_env_var(t_shell *shell);
 char		*get_var(t_var **list_var, char *key);
 char		*find_varname(char *str, int pos);
 void		remove_quotes(char *str);

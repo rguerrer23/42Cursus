@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rguerrer <rguerrer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 18:26:40 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/07/25 15:58:18 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/07/27 18:22:34 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,17 @@ void	update_shlvl(t_shell *shell)
 	int		lvl;
 
 	i = 0;
-	while (shell->env[i] != NULL)
+	while (shell->env_list[i] != NULL)
 	{
-		if (ft_strncmp(shell->env[i], "SHLVL=", 6) == 0)
+		if (ft_strncmp(shell->env_list[i]->key, "SHLVL", 5) == 0)
 		{
-			shlvl = ft_strdup(shell->env[i] + 6);
+			shlvl = ft_strdup(shell->env_list[i]->value);
 			lvl = ft_atoi(shlvl);
 			free(shlvl);
 			lvl++;
 			shlvl = ft_itoa(lvl);
-			free(shell->env[i]);
-			shell->env[i] = ft_strjoin("SHLVL=", shlvl);
-			free(shlvl);
+			free(shell->env_list[i]->value);
+			shell->env_list[i]->value = shlvl;
 			return ;
 		}
 		i++;
@@ -39,12 +38,12 @@ void	update_shlvl(t_shell *shell)
 
 void	update_oldpwd(t_shell *shell, int i)
 {
-	if (shell->oldpwd != NULL && ft_strncmp(shell->env[i], "OLDPWD=", 7) == 0)
+	if (shell->oldpwd != NULL
+		&& ft_strncmp(shell->env_list[i]->key, "OLDPWD", 6) == 0)
 	{
-		free(shell->env[i]);
-		shell->env[i] = ft_strjoin("OLDPWD=", shell->oldpwd);
+		free(shell->env_list[i]->value);
+		shell->env_list[i]->value = ft_strdup(shell->oldpwd);
 	}
-	free(shell->oldpwd);
 }
 
 void	reset_env(t_shell *shell, t_cmd **cmds)
@@ -54,22 +53,22 @@ void	reset_env(t_shell *shell, t_cmd **cmds)
 
 	i = 0;
 	x = 0;
-	while (shell->env[i])
+	while (shell->env_list[i])
 	{
 		update_oldpwd(shell, i);
-		if (ft_strncmp(shell->env[i], "_=", 2) == 0)
+		if (ft_strncmp(shell->env_list[i]->key, "_", 1) == 0)
 		{
 			if (cmds[0]->args && cmds[0]->args[0] != NULL)
 			{
 				while (cmds[0]->args[x] != NULL)
 					x++;
-				free(shell->env[i]);
-				shell->env[i] = ft_strjoin("_=", cmds[0]->args[x - 1]);
+				free(shell->env_list[i]->value);
+				shell->env_list[i]->value = ft_strdup(cmds[0]->args[x - 1]);
 			}
 			else if (cmds[0]->cmd != NULL)
 			{
-				free(shell->env[i]);
-				shell->env[i] = ft_strjoin("_=", cmds[0]->cmd);
+				free(shell->env_list[i]->value);
+				shell->env_list[i]->value = ft_strdup(cmds[0]->cmd);
 			}
 		}
 		i++;

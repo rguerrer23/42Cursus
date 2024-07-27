@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rguerrer <rguerrer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:05:28 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/07/25 15:13:05 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/07/27 18:21:25 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	update_pwd(t_shell *shell)
 		handle_getcwd_error(shell);
 		return ;
 	}
-	while (shell->env[i] != NULL)
+	while (shell->env_list[i] != NULL)
 	{
-		if (ft_strncmp(shell->env[i], "PWD=", 4) == 0)
+		if (ft_strncmp(shell->env_list[i]->key, "PWD", 3) == 0)
 		{
-			free(shell->env[i]);
-			shell->env[i] = ft_strjoin("PWD=", cwd);
-			if (shell->env[i] == NULL)
+			free(shell->env_list[i]->value);
+			shell->env_list[i]->value = ft_strdup(cwd);
+			if (shell->env_list[i]->value == NULL)
 			{
 				shell->g_status = 1;
 				return ;
@@ -42,21 +42,17 @@ void	update_pwd(t_shell *shell)
 	}
 }
 
-char	*ft_getenv(char *name, char **env)
+char	*ft_getenv(char *name, t_var **env)
 {
 	int		i;
-	int		j;
 	char	*value;
 
 	i = 0;
 	while (env[i] != NULL)
 	{
-		j = 0;
-		while (env[i][j] == name[j] && name[j] != '\0')
-			j++;
-		if (env[i][j] == '=' && name[j] == '\0')
+		if (ft_strncmp(env[i]->key, name, ft_strlen(name)) == 0)
 		{
-			value = ft_strdup(env[i] + j + 1);
+			value = ft_strdup(env[i]->value);
 			if (value == NULL)
 				return (NULL);
 			return (value);
@@ -70,7 +66,7 @@ void	ft_cd_oldpwd(t_shell *shell)
 {
 	char	*oldpwd;
 
-	oldpwd = ft_getenv("OLDPWD", shell->env);
+	oldpwd = ft_getenv("OLDPWD", shell->env_list);
 	if (oldpwd == NULL)
 	{
 		ft_putstr_fd("cd: OLDPWD not set\n", STDERR_FILENO);
@@ -93,7 +89,7 @@ void	ft_cd_home(t_shell *shell)
 {
 	char	*home;
 
-	home = ft_getenv("HOME", shell->env);
+	home = ft_getenv("HOME", shell->env_list);
 	if (home == NULL)
 		return ;
 	if (chdir(home) == -1)
@@ -108,13 +104,13 @@ void	ft_cd_home(t_shell *shell)
 
 void	ft_cd(char **full_cmd, t_shell *shell)
 {
-	if (full_cmd[1] != NULL)
+	if (full_cmd[1] != NULL && full_cmd[0] != NULL)
 	{
 		write(STDERR_FILENO, "cd: too many arguments\n", 23);
 		shell->g_status = 1;
 		return ;
 	}
-	shell->oldpwd = ft_getenv("PWD", shell->env);
+	shell->oldpwd = ft_getenv("PWD", shell->env_list);
 	if (full_cmd[0] == NULL)
 		ft_cd_home(shell);
 	else if (full_cmd[0][0] == '~')

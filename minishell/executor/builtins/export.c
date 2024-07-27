@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rguerrer <rguerrer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:59:23 by rguerrer          #+#    #+#             */
-/*   Updated: 2024/07/25 14:32:58 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:01:27 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,17 @@ int	update_env_var(char *name_var, char *value_var, t_shell *shell)
 
 	x = 0;
 	updated = 0;
-	while (shell->env[x])
+	while (shell->env_list[x])
 	{
-		if (!ft_strncmp(shell->env[x], name_var, ft_strlen(name_var))
-			&& shell->env[x][ft_strlen(name_var)] == '=')
+		if (!ft_strncmp(shell->env_list[x]->key, name_var, ft_strlen(name_var)))
 		{
-			free(shell->env[x]);
-			shell->env[x] = ft_strjoin(name_var, "=");
+			free(shell->env_list[x]->value);
 			if (value_var)
-			{
-				free(shell->env[x]);
-				shell->env[x] = ft_strjoin(shell->env[x], value_var);
-			}
+				shell->env_list[x]->value = ft_strdup(value_var);
+			else
+				shell->env_list[x]->value = NULL;
 			updated = 1;
+			break ;
 		}
 		x++;
 	}
@@ -62,10 +60,12 @@ void	print_all_env(t_shell *shell)
 	int	i;
 
 	i = 0;
-	while (shell->env[i])
+	while (shell->env_list[i])
 	{
 		ft_putstr_fd("declare -x ", shell->fdout);
-		ft_putstr_fd(shell->env[i], shell->fdout);
+		ft_putstr_fd(shell->env_list[i]->key, shell->fdout);
+		ft_putstr_fd("=", shell->fdout);
+		ft_putstr_fd(shell->env_list[i]->value, shell->fdout);
 		ft_putstr_fd("\n", shell->fdout);
 		i++;
 	}

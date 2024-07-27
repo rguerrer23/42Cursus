@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rguerrer <rguerrer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rguerrer <rguerrer@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 21:40:30 by kevlar            #+#    #+#             */
-/*   Updated: 2024/07/25 15:12:26 by rguerrer         ###   ########.fr       */
+/*   Updated: 2024/07/27 14:38:58 by rguerrer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,5 @@ void	parse_input(t_shell *shell)
 	shell->full_cmd = super_split(shell->prompt);
 	if (shell->prompt[ft_strlen(shell->prompt) - 1] == ' ')
 		shell->full_cmd = ft_strd_lastdel(shell->full_cmd);
-	expand_env_var(shell, shell->env);
+	expand_env_var(shell);
 }
