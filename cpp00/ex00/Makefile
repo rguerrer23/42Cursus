@@ -9,7 +9,7 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(SOURCES)
-	$(CC) $(CPPFLAGS) -o $(NAME) $(NAME)
+	$(CC) $(CPPFLAGS) $(SOURCES) -o $(NAME)
 
 clean:
 	$(RM) $(NAME)
