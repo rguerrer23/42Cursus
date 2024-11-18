@@ -18,9 +18,10 @@ int main(void)
 	PhoneBook phoneBook;
 	std::string command;
 
+	std::cout << "Welcome to the phonebook!" << std::endl;
 	while (1)
 	{
-		std::cout << "Enter a command: ";
+		std::cout << "Enter a command: "<< std::endl;
 		std::getline(std::cin, command);
 		if (command == "ADD")
 			phoneBook.addContact();

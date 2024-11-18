@@ -1,15 +1,13 @@
-NAME = Phonebook
+NAME = Zombie
 CC = g++
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 
-SOURCES = main.cpp \
-		PhoneBook.cpp \
-		Contact.cpp
+SOURCES = Zombie.cpp \
+		main.cpp \
+		randomChump.cpp \
+		newZombie.cpp
 
-HEADERS = PhoneBook.hpp \
-		Contact.hpp
-
-RM = rm -f
+HEADERS = Zombie.hpp
 
 all: $(NAME)
 
@@ -17,4 +15,4 @@ $(NAME): $(SOURCES) $(HEADERS)
 	$(CC) $(CPPFLAGS) $(SOURCES) -o $(NAME) 
 
 clean:
-	$(RM) $(NAME)
+	rm -f $(NAME)

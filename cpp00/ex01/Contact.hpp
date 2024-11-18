@@ -19,23 +19,29 @@
 class Contact
 {
 	private:
-		std::string firstName;
-		std::string lastName;
-		std::string nickname;
-		std::string login;
-		std::string postalAddress;
-		std::string emailAddress;
-		std::string phoneNumber;
-		std::string birthdayDate;
-		std::string favoriteMeal;
-		std::string underwearColor;
-		std::string darkestSecret;
+	std::string	firstName;
+	std::string	lastName;
+	std::string	nickName;
+	std::string	phoneNumber;
+	std::string	darkestSecret;
 	public:
 		Contact();
 		~Contact();
-		void	setContact();
-		void	printContact(int index);
-		void	printFullContact();
+		// Getters
+		std::string	getfirstName(void) const;
+		std::string	getlastName(void) const;
+		std::string	getnickName(void) const;
+		std::string	getphoneNumber(void) const;
+		std::string	getdarkestSecret(void) const;
+		// Setters
+		void	setfirstName(std::string str);
+		void	setlastName(std::string str);
+		void	setnickName(std::string str);
+		void	setphoneNumber(std::string str);
+		void	setdarkestSecret(std::string str);
+		// Methods
+		void	printContact();
+		void	fieldPrint(std::string str);
 };
 
 #endif
