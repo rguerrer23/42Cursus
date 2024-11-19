@@ -29,13 +29,11 @@ int main(void)
 			phoneBook.searchContact();
 		else if (command == "EXIT")
 			break;
-		else if (std::cin.eof())
+		if (std::cin.eof())
 		{
 			std::cout << std::endl;
 			break;
 		}
-		else
-			std::cout << "Invalid command. Please enter ADD, SEARCH or EXIT." << std::endl;
 	}
 	return 0;
 }

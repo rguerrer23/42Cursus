@@ -15,12 +15,14 @@
 
 #include "Contact.hpp"
 #include <string>
+#include <cstdlib>
 
 class PhoneBook
 {
 	private:
 		Contact contacts[8];
 		int		contactCount;
+		int		oldestContactIndex;
 	public:
 		PhoneBook();
 		~PhoneBook();

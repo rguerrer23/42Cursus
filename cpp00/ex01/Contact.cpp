@@ -67,16 +67,16 @@ void	Contact::setdarkestSecret(std::string str)
 void	Contact::fieldPrint(std::string str)
 {
 	std::string::size_type i = 0;
-	while(i < 9 && i < str.length())
+	while(i < 10 && i < str.length())
 	{
 		std::cout << str[i];
 		i++;
-		if (i == 8 && str.length() > 10)
+		if (i == 9 && str.length() > 10)
 		{
 			std::cout << '.';
 			i++;
 		}
-		else if (i == 8 && str.length() == 10)
+		else if (i == 9 && str.length() == 10)
 		{
 			std::cout << str[9];
 			i++;
