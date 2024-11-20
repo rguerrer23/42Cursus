@@ -69,6 +69,7 @@ void	PhoneBook::addContact()
 	std::string str;
 	int	idx;
 
+	str = "";
 	if (contactCount < 8)
 		idx = contactCount;
 	else
@@ -78,25 +79,40 @@ void	PhoneBook::addContact()
 		oldestContactIndex = (oldestContactIndex + 1) % 8;
 	}
 
-	std::cout << "Enter the first name: ";
-	if (!std::getline(std::cin, str) || str.empty()) return;
-	contacts[idx].setfirstName(str);
-
-	std::cout << "Enter the last name: ";
-	if (!std::getline(std::cin, str) || str.empty()) return;
-	contacts[idx].setlastName(str);
-
-	std::cout << "Enter the nickname: ";
-	if (!std::getline(std::cin, str) || str.empty()) return;
-	contacts[idx].setnickName(str);
-
-	std::cout << "Enter the phone number: ";
-	if (!std::getline(std::cin, str) || str.empty()) return;
-	contacts[idx].setphoneNumber(str);
-
-	std::cout << "Enter the darkest secret: ";
-	if (!std::getline(std::cin, str) || str.empty()) return;
-	contacts[idx].setdarkestSecret(str);
+	while (str == "" && !std::cin.eof())
+	{
+		std::cout << "Enter the first name: ";
+		if (std::getline(std::cin, str) && str != "")
+			contacts[idx].setfirstName(str);
+	}
+	str = "";
+	while (str == "" && !std::cin.eof())
+	{
+		std::cout << "Enter the last name: ";
+		if (std::getline(std::cin, str) && str != "")
+			contacts[idx].setlastName(str);
+	}
+	str = "";
+	while (str == "" && !std::cin.eof())
+	{
+		std::cout << "Enter the nickname: ";
+		if (std::getline(std::cin, str) && str != "")
+			contacts[idx].setnickName(str);
+	}
+	str = "";
+	while (str == "" && !std::cin.eof())
+	{
+		std::cout << "Enter the phone number: ";
+		if (std::getline(std::cin, str) && str != "")
+			contacts[idx].setphoneNumber(str);
+	}
+	str = "";
+	while (str == "" && !std::cin.eof())
+	{
+		std::cout << "Enter the darkest secret: ";
+		if (std::getline(std::cin, str) && str != "")
+			contacts[idx].setdarkestSecret(str);
+	}
 
 	if (contactCount < 8)
 		contactCount++;
