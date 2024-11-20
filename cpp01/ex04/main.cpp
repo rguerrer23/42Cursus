@@ -3,6 +3,9 @@
 
 std::string replaceContent(std::string buffer, std::string s1, std::string s2)
 {
+	if (s1.empty())
+		return buffer;
+
 	size_t s1_len = s1.length();
 	size_t s2_len = s2.length();
 	size_t pos = 0;
