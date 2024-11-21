@@ -5,9 +5,11 @@ CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 SOURCES = Fixed.cpp \
 		main.cpp \
 		Point.cpp \
+		bsp.cpp \
 
 HEADERS = Fixed.hpp \
 		Point.hpp \
+		bsp.hpp \
 
 all: $(NAME)
 
