@@ -2,17 +2,20 @@
 
 void Harl::debug()
 {
-	std::cout << "DEBUG: I love having extra bacon for my burger!" << std::endl;
+	std::cout << "DEBUG: I love having extra bacon for my 7XL-double-cheese-triple-pickle-specialketchup burger." << std::endl;
+	std::cout << "I really do!!" << std::endl;
 }
 
 void Harl::info()
 {
 	std::cout << "INFO: I cannot believe adding extra bacon costs more money." << std::endl;
+	std::cout << "You didn’t put enough bacon in my burger! If you did, I wouldn’t be asking for more!" << std::endl;
 }
 
 void Harl::warning()
 {
-	std::cout << "WARNING: I think I deserve free bacon for my loyalty." << std::endl;
+	std::cout << "WARNING: I think I deserve to have some extra bacon for free." << std::endl;
+	std::cout << "I’ve been coming for years whereas you started working here since last month." << std::endl;
 }
 
 void Harl::error()
@@ -35,13 +38,13 @@ void Harl::complain(std::string level)
 	{
 		case 0:
 			(this->*actions[0])();
-			break;
+			// fallthrough
 		case 1:
 			(this->*actions[1])();
-			break;
+			// fallthrough
 		case 2:
 			(this->*actions[2])();
-			break;
+			// fallthrough
 		case 3:
 			(this->*actions[3])();
 			break;
