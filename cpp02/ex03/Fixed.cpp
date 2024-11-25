@@ -126,6 +126,11 @@ Fixed Fixed::operator--(int)
 	return tmp;
 }
 
+Fixed Fixed::operator-() const
+{
+	return Fixed(-this->toFloat());
+}
+
 Fixed &Fixed::min(Fixed &a, Fixed &b)
 {
 	return (a < b) ? a : b;

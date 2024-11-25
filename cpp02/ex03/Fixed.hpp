@@ -35,6 +35,8 @@ class Fixed
 		Fixed &operator--();
 		Fixed operator--(int);
 
+		Fixed operator-() const;
+
 		int getRawBits() const;
 		void setRawBits(int const raw);
 		float toFloat() const;
