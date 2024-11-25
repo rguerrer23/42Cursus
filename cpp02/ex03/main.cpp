@@ -1,10 +1,6 @@
 #include "Point.hpp"
 #include "bsp.hpp"
 
-#include "Point.hpp"
-#include "bsp.hpp"
-#include <iostream>
-
 void testBsp(Point const& a, Point const& b, Point const& c, Point const& point, std::string const& description) {
     bool result = bsp(a, b, c, point);
     std::cout << description << ": " << (result ? "Inside" : "Outside") << std::endl;
