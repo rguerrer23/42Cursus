@@ -2,20 +2,23 @@
 
 int main()
 {
-	ClapTrap clap1("CL4P-TP");
-	ClapTrap clap2 = clap1;
-	ClapTrap clap3;
+	std::cout << "### TESTING CLAPTRAP ###\n" << std::endl;
+	{
+		std::cout << "\033[34mConstructing\033[0m" << std::endl;
+		ClapTrap a;
+		ClapTrap b("Cody");
 
-	clap3 = clap1;
-
-	clap1.attack("target1");
-	clap1.takeDamage(3);
-	clap1.beRepaired(5);
-
-	clap2.attack("target2");
-	clap2.takeDamage(7);
-
-	clap3.beRepaired(10);
-
-	return 0;
+		std::cout << "\033[34mTesting\033[0m" << std::endl;
+		a.attack("some other robot");
+		a.takeDamage(10);
+		a.takeDamage(10);
+		a.beRepaired(5);
+		a.attack("some other other robot");
+		b.beRepaired(3);
+		for (int i = 0; i < 12; i++)
+			b.attack("Cody-clone");
+		b.beRepaired(3);
+		std::cout << "\033[34mDeconstructing\033[0m" << std::endl;
+	}
+	return (0);
 }
