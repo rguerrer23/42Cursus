@@ -17,7 +17,7 @@ ClapTrap::ClapTrap(const ClapTrap &other) : _name(other._name), _hitPoints(other
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "ClapTrap " << this->_name << " destroyed!" << std::endl;
+	std::cout << "ClapTrap " << _name << " destroyed (base part)!" << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &other)

@@ -1,24 +1,21 @@
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main()
 {
-	std::cout << "### TESTING CLAPTRAP ###\n" << std::endl;
-	{
-		std::cout << "\033[34mConstructing\033[0m" << std::endl;
-		ClapTrap a;
-		ClapTrap b("Cody");
+	ClapTrap clap1("CL4P-TP");
+	clap1.attack("enemy");
+	clap1.takeDamage(5);
+	clap1.beRepaired(3);
 
-		std::cout << "\033[34mTesting\033[0m" << std::endl;
-		a.attack("some other robot");
-		a.takeDamage(10);
-		a.takeDamage(10);
-		a.beRepaired(5);
-		a.attack("some other other robot");
-		b.beRepaired(3);
-		for (int i = 0; i < 12; i++)
-			b.attack("Cody-clone");
-		b.beRepaired(3);
-		std::cout << "\033[34mDeconstructing\033[0m" << std::endl;
-	}
-	return (0);
+	ScavTrap scav1("SC4V-TP");
+	scav1.attack("intruder");
+	scav1.takeDamage(20);
+	scav1.beRepaired(15);
+	scav1.guardGate();
+
+	ScavTrap scav2 = scav1;
+	scav2.attack("another intruder");
+
+	return 0;
 }
