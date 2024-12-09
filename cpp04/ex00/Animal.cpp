@@ -7,14 +7,14 @@ Animal::Animal() : type("Animal")
 
 Animal::Animal(const Animal &other) : type(other.type)
 {
+	*this = other;
 	std::cout << "Animal copied!" << std::endl;
 }
 
 Animal &Animal::operator=(const Animal &other)
 {
-	if (this == &other)
+	if (this != &other)
 		type = other.type;
-	std::cout << "Animal assigned!" << std::endl;
 	return *this;
 }
 
@@ -30,5 +30,5 @@ std::string Animal::getType() const
 
 void Animal::makeSound() const
 {
-	std::cout << "Animal sound!" << std::endl;
+	std::cout << "Animal makes a generic sound!" << std::endl;
 }
